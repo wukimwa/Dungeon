@@ -9,11 +9,18 @@ void dungeonNormal();
 void dungeonReward();
 
 // global variable
+// player variable
 string playerName;
 int playerLv = 0;
 int playerExp = 0;
-int playerCoin = 0;
 
+// weapon variable
+int playerWeaponLevel = 0;
+string playerWeaponType = "None";
+
+// const weapon value
+const int woodenswordAttackValue = 250;
+const int goldenswordAttackValue = 500;
 
 
 void menu() {
@@ -53,7 +60,11 @@ void player() {
         cout << endl;
 
         switch (number) {
-        case 1: cout << endl << "Coins: " << playerCoin << endl << "Experiences: " << playerExp << endl; break;
+        case 1:
+            cout << endl << playerName << "'s Profile" << endl;
+            cout << "Experiences: " << playerExp << " (Level " << playerLv << ")" << endl;
+            cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
+            break;
         case 2: cout << endl << "Power Up Developing"; break;
         case 3: menu(); break;
         }
@@ -103,9 +114,9 @@ void dungeonNormal() {
         
         cin.ignore();
         number++;
-    } while (number < 250);
+    } while (number < 50);
 
-    if (number >= 250) {
+    if (number >= 50) {
         dungeonReward();
     }
 
@@ -113,8 +124,7 @@ void dungeonNormal() {
 
 void dungeonReward() {
     cout << endl << "Dungeon Completed" << endl;
-    cout << endl << "Rewards:" << endl << "Coins: " << 100 << endl << "Exp: " << 50;
-    playerCoin += 100;
+    cout << endl << "Rewards: Exp x" << 50;
     playerExp += 50;
     menu();
 }
