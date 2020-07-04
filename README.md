@@ -1,6 +1,6 @@
-## How To Run The Game
-1. Click the button here ➡️ [![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game) ⬅️
-2. Click RUN on Repl.it
+## How To Run The Game [![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game)
+1. Click the button here 💻 https://repl.it/github/wukimwa/game 💻
+2. Click the RUN button on Repl.it
 
 
 ## To Do List
