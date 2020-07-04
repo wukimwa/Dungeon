@@ -84,10 +84,23 @@ void dungeon() {
 void dungeonNormal() {
     int number = 0;
     int attack;
+    int attacking = 0;
     cout << "Press enter to attack the monster." << endl;
 
     do {
-        cout << "Attacking...";
+        if (attacking == 0) {
+            cout << "Attacking.";
+            attacking++;
+        }
+        else if (attacking == 1) {
+            cout << "Attacking..";
+            attacking++;
+        }
+        else {
+            cout << "Attacking...";
+            attacking = 0;
+        }
+        
         cin.ignore();
         number++;
     } while (number < 250);
@@ -100,7 +113,7 @@ void dungeonNormal() {
 
 void dungeonReward() {
     cout << endl << "Dungeon Completed" << endl;
-    cout << endl << "Rewards: Coins x" << 100 << " Experiences x" << 50;
+    cout << endl << "Rewards:" << endl << "Coins: " << 100 << endl << "Exp: " << 50;
     playerCoin += 100;
     playerExp += 50;
     menu();
@@ -110,10 +123,9 @@ int main() {
 
     if (playerName == "") {
         
-        cout << "Please enter your username: ";
+        cout << endl << "Please enter a username: ";
         cin >> playerName;
         cout << endl;
-
         menu();
     }
 
