@@ -13,7 +13,7 @@ int main(){
     cin >> playerName;
     cout << endl;
 
-    menu();
+    menu(playerName);
 
     return 0;
 }
