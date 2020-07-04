@@ -55,7 +55,8 @@ void player() {
         cout << "---Player Menu---" << endl;
         cout << "1) View " << playerName << " Information" << endl;
         cout << "2) Power Up" << endl;
-        cout << "3) Exit To Menu" << endl;
+        cout << "3) Weapon Store" << endl;
+        cout << "4) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
 
@@ -66,10 +67,11 @@ void player() {
             cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
             break;
         case 2: cout << endl << "Power Up Developing"; break;
-        case 3: menu(); break;
+        case 3: cout << endl << "Weapon Store Developing"; break;
+        case 4: menu(); break;
         }
 
-    } while (number >= 1 && number <= 3);
+    } while (number >= 1 && number <= 4);
 }
 
 void dungeon() {
@@ -93,9 +95,12 @@ void dungeon() {
 }
 
 void dungeonNormal() {
-    int number = 0;
+
     int attack;
     int attacking = 0;
+
+    int monsterMaxHealth = 200; // dungeon monster health
+    int monsterHealth = monsterMaxHealth;
     cout << "Press enter to attack the monster." << endl;
 
     do {
@@ -111,12 +116,16 @@ void dungeonNormal() {
             cout << "Attacking...";
             attacking = 0;
         }
+
+        if (monsterHealth == (0.5 * monsterMaxHealth)) {
+            cout << endl << endl << "Monster Health - 50% left..." << endl;
+        }
         
         cin.ignore();
-        number++;
-    } while (number < 50);
+        monsterHealth--;
+    } while (monsterHealth > 0);
 
-    if (number >= 50) {
+    if (monsterHealth <= 0) {
         dungeonReward();
     }
 
@@ -124,7 +133,7 @@ void dungeonNormal() {
 
 void dungeonReward() {
     cout << endl << "Dungeon Completed" << endl;
-    cout << endl << "Rewards: Exp x" << 50;
+    cout << endl << "Rewards: " << 50 << "EXP";
     playerExp += 50;
     menu();
 }
