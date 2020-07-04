@@ -1,10 +1,19 @@
 #include <iostream>
 using namespace std;
 
+void menu(string playerName){
+    cout << "Hello, " << playerName;
+}
+
 int main(){
-    int level = 0;
-    cout << "Hello, player." << endl;
-    cout << "Player Level: " << level;
+    string playerName;
+    int playerLv = 0, playerCoin = 0, playerExp = 0;
+
+    cout << "Please enter your username: ";
+    cin >> playerName;
+    cout << endl;
+
+    menu();
 
     return 0;
 }
