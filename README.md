@@ -1,6 +1,6 @@
 ## game
-> A simple game written in C++
 [![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game)
+
 
 ## To Do List
 > https://github.com/wukimwa/game/projects/1
