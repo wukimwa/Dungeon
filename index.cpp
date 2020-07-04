@@ -20,8 +20,8 @@ int playerWeaponLevel = 0;
 string playerWeaponType = "None";
 
 // const weapon value
-const int woodenswordAttackValue = 250;
-const int goldenswordAttackValue = 500;
+const int woodenswordAttackValue = 25;
+const int goldenswordAttackValue = 50;
 
 
 void menu() {
@@ -77,9 +77,10 @@ void player() {
 
 void weaponStore() {
     int number = 0;
+    cout << endl;
     cout << "Dungeon Weapon Store" << endl;
-    cout << "500EXP Golden Sword (-5 Monster MAX Health)" << endl;
-    cout << "200EXP Wooden Sword (-2 Monster MAX Health)" << endl;
+    cout << "500EXP Golden Sword (-" << goldenswordAttackValue << " Monster MAX Health)" << endl;
+    cout << "200EXP Wooden Sword (-" << woodenswordAttackValue << " Monster MAX Health)" << endl;
     cout << endl;
     cout << "1) Get a golden sword (500 Experiences)" << endl;
     cout << "2) Get a wooden sword (200 Experiences)" << endl;
@@ -140,6 +141,15 @@ void dungeonNormal() {
 
     int monsterMaxHealth = 200; // dungeon monster health
     int monsterHealth = monsterMaxHealth;
+
+    // weapon deduct monster health
+    if (playerWeaponType == "Wooden Sword") {
+        monsterHealth -= woodenswordAttackValue;
+    }
+    else if (playerWeaponType == "Golden Sword") {
+        monsterHealth -= goldenswordAttackValue;
+    }
+
     cout << "Press enter to attack the monster." << endl;
 
     do {
