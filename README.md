@@ -3,10 +3,6 @@
 2. Click the RUN button on Repl.it
 
 
-## To Do List
-> https://github.com/wukimwa/game/projects/1
-
-
 ## Version History
 > - Version 1.1.0 (4-Jul-20)
 >   - Created basic menu for the game
@@ -15,5 +11,9 @@
 >   - Opened repositories and projects for game development
 
 
+## To Do List
+https://github.com/wukimwa/game/projects/1
+
+
 ## Copyright
-> Copyright © 2020 wukimwa. All Rights Reserved.
+Copyright © 2020 wukimwa. All Rights Reserved.
