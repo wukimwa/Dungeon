@@ -1,9 +1,16 @@
 #include <iostream>
 using namespace std;
 
-void menu(string playerName);
+// function header
+void menu();
 
-void player(string playerName) {
+// global variable
+string playerName;
+int playerLv = 0;
+int playerExp = 0;
+int playerCoin = 0;
+
+void player() {
     int number = 0;
 
     do {
@@ -17,19 +24,19 @@ void player(string playerName) {
         cout << endl;
 
         switch (number) {
-        case 1: cout << "Coins: 0\nExperiences: 0"; break;
-        case 2: cout << "Power Up Developing"; break;
-        case 3: menu(playerName); break;
+        case 1: cout << endl << "Coins: 0\nExperiences: 0"; break;
+        case 2: cout << endl << "Power Up Developing"; break;
+        case 3: menu(); break;
         }
 
     } while (number >= 1 && number <= 3);
 }
 
-void dungeon(string playerName) {
+void dungeon() {
     cout << "Dungeon Developing";
 }
 
-void menu(string playerName) {
+void menu() {
     int number = 0;
 
     do {
@@ -43,8 +50,8 @@ void menu(string playerName) {
         cout << endl;
 
         switch (number) {
-        case 1: player(playerName); break;
-        case 2: dungeon(playerName); break;
+        case 1: player(); break;
+        case 2: dungeon(); break;
         case 3: break;
         }
 
@@ -53,17 +60,15 @@ void menu(string playerName) {
 }
 
 int main() {
-    string playerName;
 
     if (playerName == "") {
-        int playerLv = 0, playerCoin = 0, playerExp = 0;
-
+        
         cout << "Please enter your username: ";
         cin >> playerName;
         cout << endl;
 
-        menu(playerName);
+        menu();
     }
-    
+
     return 0;
 }
