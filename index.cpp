@@ -7,6 +7,7 @@ void player();
 void dungeon();
 void dungeonNormal();
 void dungeonReward();
+void weaponStore();
 
 // global variable
 // player variable
@@ -42,7 +43,7 @@ void menu() {
         case 3: break;
         }
 
-    } while (number >= 1 && number <= 2);
+    } while (number >= 1 && number <= 3);
 
 }
 
@@ -67,11 +68,49 @@ void player() {
             cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
             break;
         case 2: cout << endl << "Power Up Developing"; break;
-        case 3: cout << endl << "Weapon Store Developing"; break;
+        case 3: weaponStore(); break;
         case 4: menu(); break;
         }
 
     } while (number >= 1 && number <= 4);
+}
+
+void weaponStore() {
+    int number = 0;
+    cout << "Dungeon Weapon Store" << endl;
+    cout << "500EXP Golden Sword (-5 Monster MAX Health)" << endl;
+    cout << "200EXP Wooden Sword (-2 Monster MAX Health)" << endl;
+    cout << endl;
+    cout << "1) Get a golden sword (500 Experiences)" << endl;
+    cout << "2) Get a wooden sword (200 Experiences)" << endl;
+    cout << "3) Exit To Menu" << endl;
+    cin >> number;
+
+    switch (number) {
+    case 1:
+        if (playerExp >= 500) {
+            playerExp -= 500;
+            playerWeaponType = "Golden Sword";
+            cout << playerWeaponType << " purchased" << endl;
+        }
+        else {
+            cout << "You do not have enough experiences." << endl;
+        }
+        menu(); break;
+
+    case 2:    
+        if (playerExp >= 200) {
+            playerExp -= 200;
+            playerWeaponType = "Wooden Sword";
+            cout << playerWeaponType << " purchased" << endl;
+        }
+        else {
+            cout << "You do not have enough experiences." << endl;
+        }
+        menu(); break;
+
+    case 3: menu(); break;
+    }
 }
 
 void dungeon() {
@@ -141,8 +180,9 @@ void dungeonReward() {
 int main() {
 
     if (playerName == "") {
-        
-        cout << endl << "Please enter a username: ";
+        cout << endl << "Dungeon Game" << endl;
+        cout << "https://github.com/wukimwa/game" << endl << endl;
+        cout << "Please enter a username: ";
         cin >> playerName;
         cout << endl;
         menu();
