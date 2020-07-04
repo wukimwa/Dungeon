@@ -6,6 +6,7 @@ void menu();
 void player();
 void dungeon();
 void dungeonNormal();
+void dungeonReward();
 
 // global variable
 string playerName;
@@ -52,7 +53,7 @@ void player() {
         cout << endl;
 
         switch (number) {
-        case 1: cout << endl << "Coins: 0\nExperiences: 0"; break;
+        case 1: cout << endl << "Coins: " << playerCoin << endl << "Experiences: " << playerExp << endl; break;
         case 2: cout << endl << "Power Up Developing"; break;
         case 3: menu(); break;
         }
@@ -89,13 +90,20 @@ void dungeonNormal() {
         cout << "Attacking...";
         cin.ignore();
         number++;
-    } while (number < 25);
+    } while (number < 250);
 
-    if (number >= 25) {
-        cout << "Dungeon Completed" << endl;
-        menu();
+    if (number >= 250) {
+        dungeonReward();
     }
 
+}
+
+void dungeonReward() {
+    cout << endl << "Dungeon Completed" << endl;
+    cout << endl << "Rewards: Coins x" << 100 << " Experiences x" << 50;
+    playerCoin += 100;
+    playerExp += 50;
+    menu();
 }
 
 int main() {
