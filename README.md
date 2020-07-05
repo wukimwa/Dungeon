@@ -4,6 +4,9 @@
 
 
 ## Version History
+> - Version 1.2.0 (5-Jul-20)
+>   - Created basic level up and power up system
+>   - Improved interface design
 > - Version 1.1.0 (4-Jul-20)
 >   - Created basic menu for the game
 >   - Supported Repl from Repo
