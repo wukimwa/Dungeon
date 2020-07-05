@@ -10,6 +10,10 @@ void dungeonReward();
 void weaponStore();
 
 // global variable
+const string RESET_COLOR = "\033[0m";
+const string BRIGHT_YELLOW = "\033[93m";
+const string BRIGHT_CYAN = "\033[96m";
+
 // player variable
 string playerName;
 int playerLv = 0;
@@ -99,7 +103,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 2:    
+    case 2:
         if (playerExp >= 200) {
             playerExp -= 200;
             playerWeaponType = "Wooden Sword";
@@ -169,7 +173,7 @@ void dungeonNormal() {
         if (monsterHealth == (0.5 * monsterMaxHealth)) {
             cout << endl << endl << "Monster Health - 50% left..." << endl;
         }
-        
+
         cin.ignore();
         monsterHealth--;
     } while (monsterHealth > 0);
@@ -190,9 +194,14 @@ void dungeonReward() {
 int main() {
 
     if (playerName == "") {
-        cout << endl << "Dungeon Game" << endl;
-        cout << "https://github.com/wukimwa/game" << endl << endl;
-        cout << "Please enter a username: ";
+
+        cout << BRIGHT_CYAN << "Dungeon Game" << RESET_COLOR << endl;
+
+        cout << "https://github.com/wukimwa/game" << endl;
+        cout << endl;
+
+        cout << BRIGHT_YELLOW << "Login" << RESET_COLOR << endl;
+        cout << "Username: ";
         cin >> playerName;
         cout << endl;
         menu();
