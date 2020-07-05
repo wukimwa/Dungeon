@@ -11,6 +11,7 @@ void weaponStore();
 
 // global variable
 const string RESET_COLOR = "\033[0m";
+const string BRIGHT_GREEN = "\033[92m";
 const string BRIGHT_YELLOW = "\033[93m";
 const string BRIGHT_CYAN = "\033[96m";
 
@@ -58,7 +59,7 @@ void player() {
 
         cout << endl << endl;
         cout << "---Player Menu---" << endl;
-        cout << "1) View " << playerName << " Information" << endl;
+        cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
         cout << "2) Power Up" << endl;
         cout << "3) Weapon Store" << endl;
         cout << "4) Exit To Menu" << endl;
@@ -86,8 +87,8 @@ void weaponStore() {
     cout << "500EXP Golden Sword (-" << goldenswordAttackValue << " Monster MAX Health)" << endl;
     cout << "200EXP Wooden Sword (-" << woodenswordAttackValue << " Monster MAX Health)" << endl;
     cout << endl;
-    cout << "1) Get a golden sword (500 Experiences)" << endl;
-    cout << "2) Get a wooden sword (200 Experiences)" << endl;
+    cout << "1) Get a Golden Sword (Cost 500EXP)" << endl;
+    cout << "2) Get a Wooden Sword (Cost 200EXP)" << endl;
     cout << "3) Exit To Menu" << endl;
     cin >> number;
 
@@ -201,9 +202,9 @@ int main() {
         cout << endl;
 
         cout << BRIGHT_YELLOW << "Login" << RESET_COLOR << endl;
-        cout << "Username: ";
+        cout << "Username: " << BRIGHT_GREEN;
         cin >> playerName;
-        cout << endl;
+        cout << RESET_COLOR << endl;
         menu();
     }
 
