@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 // function header
@@ -36,7 +37,9 @@ void menu() {
     do {
 
         cout << endl << endl;
-        cout << "---Main Menu---" << endl;;
+        cout << "---Main Menu---" << endl;
+        cout << BRIGHT_YELLOW << setw(11) << playerExp << RESET_COLOR << " EXP" << endl << endl;
+
         cout << "1) Player" << endl;
         cout << "2) Dungeon" << endl;
         cout << "3) Exit Game" << endl;
@@ -170,10 +173,10 @@ void dungeon() {
     int number = 0;
 
     do {
-
+        
         cout << endl << endl;
         cout << "---Dungeon Menu---" << endl;
-        cout << "1) Go into the dungeon" << endl;
+        cout << "1) ENTER Normal Dungeon" << endl;
         cout << "2) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
