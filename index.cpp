@@ -37,8 +37,8 @@ void menu() {
     do {
 
         cout << endl << endl;
-        cout << "---Main Menu---" << endl;
-        cout << BRIGHT_YELLOW << setw(11) << playerExp << RESET_COLOR << " EXP" << endl << endl;
+        cout << "-----Main Menu-----" << endl;
+        cout << BRIGHT_YELLOW << setw(15) << playerExp << RESET_COLOR << " EXP" << endl << endl;
 
         cout << "1) Player" << endl;
         cout << "2) Dungeon" << endl;
@@ -62,7 +62,7 @@ void player() {
     do {
 
         cout << endl << endl;
-        cout << "---Player Menu---" << endl;
+        cout << "-----Player Menu-----" << endl;
         cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
         cout << "2) Level Up" << endl;
         cout << "3) Weapon Store" << endl;
@@ -90,7 +90,7 @@ void levelup() {
     do {
 
         cout << endl << endl;
-        cout << "---Level Up Menu---" << endl;
+        cout << "-----Level Up Menu-----" << endl;
         cout << "1) Player Level +1 (Cost 50EXP) " << endl;
         cout << "2) Exit To Menu" << endl;
         cin >> number;
@@ -118,7 +118,7 @@ void levelup() {
 void weaponStore() {
     int number = 0;
     cout << endl;
-    cout << "Dungeon Weapon Store" << endl;
+    cout << "-----Dungeon Weapon Store-----" << endl;
     cout << "500EXP Golden Sword (-" << goldenswordAttackValue << " Monster MAX Health)" << endl;
     cout << "200EXP Wooden Sword (-" << woodenswordAttackValue << " Monster MAX Health)" << endl;
     cout << endl;
@@ -175,7 +175,7 @@ void dungeon() {
     do {
         
         cout << endl << endl;
-        cout << "---Dungeon Menu---" << endl;
+        cout << "-----Dungeon Menu-----" << endl;
         cout << "1) ENTER Normal Dungeon" << endl;
         cout << "2) Exit To Menu" << endl;
         cin >> number;
@@ -205,24 +205,20 @@ void dungeonNormal() {
         monsterHealth -= goldenswordAttackValue;
     }
 
-    cout << "Press enter to attack the monster." << endl;
-
     do {
-        if (attacking == 0) {
-            cout << "Attacking.";
-            attacking++;
-        }
-        else if (attacking == 1) {
-            cout << "Attacking..";
-            attacking++;
-        }
-        else {
-            cout << "Attacking...";
-            attacking = 0;
-        }
 
-        if (monsterHealth == (0.5 * monsterMaxHealth)) {
+        if (monsterHealth == monsterMaxHealth) {
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 100% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Press ENTER to attack the monster." << RESET_COLOR << endl;
+        }
+        else if (monsterHealth == (0.75 * monsterMaxHealth)) {
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 75% left..." << RESET_COLOR << endl;
+        }
+        else if (monsterHealth == (0.5 * monsterMaxHealth)) {
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 50% left..." << RESET_COLOR << endl;
+        }
+        else if (monsterHealth == (0.25 * monsterMaxHealth)) {
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 25% left..." << RESET_COLOR << endl;
         }
 
         cin.ignore();
@@ -236,8 +232,8 @@ void dungeonNormal() {
 }
 
 void dungeonReward() {
-    cout << endl << "Dungeon Completed" << endl;
-    cout << endl << "Rewards: " << 50 << "EXP";
+    cout << endl << BRIGHT_YELLOW << "Dungeon Completed" << RESET_COLOR << endl;
+    cout << endl << "Rewards: " << 50 << "EXP" << endl << endl;
     playerExp += 50;
     menu();
 }
