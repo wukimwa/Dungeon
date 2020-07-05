@@ -4,7 +4,6 @@ using namespace std;
 // function header
 void menu();
 void player();
-void powerup();
 void levelup();
 void dungeon();
 void dungeonNormal();
@@ -62,10 +61,9 @@ void player() {
         cout << endl << endl;
         cout << "---Player Menu---" << endl;
         cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
-        cout << "2) Power Up" << endl;
-        cout << "3) Level Up" << endl;
-        cout << "4) Weapon Store" << endl;
-        cout << "5) Exit To Menu" << endl;
+        cout << "2) Level Up" << endl;
+        cout << "3) Weapon Store" << endl;
+        cout << "4) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
 
@@ -75,10 +73,9 @@ void player() {
             cout << "Experiences: " << playerExp << " (Level " << playerLv << ")" << endl;
             cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
             break;
-        case 2: powerup(); break;
-        case 3: levelup(); break;
-        case 4: weaponStore(); break;
-        case 5: menu(); break;
+        case 2: levelup(); break;
+        case 3: weaponStore(); break;
+        case 4: menu(); break;
         }
 
     } while (number >= 1 && number <= 4);
@@ -114,35 +111,7 @@ void levelup() {
     } while (number >= 1 && number <= 2);
 }
 
-void powerup() {
-    int number = 0;
 
-    do {
-
-        cout << endl << endl;
-        cout << "---Power Up Menu---" << endl;
-        cout << "1) Weapon Level +1 (Cost 50EXP) " << endl;
-        cout << "2) Exit To Menu" << endl;
-        cin >> number;
-        cout << endl;
-
-        switch (number) {
-        case 1:
-            if (playerExp >= 50) {
-                playerExp -= 50;
-                playerWeaponLevel += 1;
-                cout << "Level Up!" << endl;
-            }
-            else {
-                cout << "You do not have enough experiences." << endl;
-            }
-            menu(); break;
-
-        case 2: menu(); break;
-        }
-
-    } while (number >= 1 && number <= 2);
-}
 void weaponStore() {
     int number = 0;
     cout << endl;
@@ -150,13 +119,28 @@ void weaponStore() {
     cout << "500EXP Golden Sword (-" << goldenswordAttackValue << " Monster MAX Health)" << endl;
     cout << "200EXP Wooden Sword (-" << woodenswordAttackValue << " Monster MAX Health)" << endl;
     cout << endl;
-    cout << "1) Get a Golden Sword (Cost 500EXP)" << endl;
-    cout << "2) Get a Wooden Sword (Cost 200EXP)" << endl;
-    cout << "3) Exit To Menu" << endl;
+    cout << "1) Weapon Power Up (Cost 50EXP)" << endl;
+    cout << "2) Get a Golden Sword (Cost 500EXP)" << endl;
+    cout << "3) Get a Wooden Sword (Cost 200EXP)" << endl;
+    cout << "4) Exit To Menu" << endl;
     cin >> number;
 
     switch (number) {
     case 1:
+        if (playerExp >= 50 && playerWeaponType != "None") {
+            playerExp -= 50;
+            playerWeaponLevel += 1;
+            cout << "Power Up!" << endl;
+        }
+        else if (playerWeaponType == "None") {
+            cout << "You do not have any weapon." << endl;
+        }
+        else {
+            cout << "You do not have enough experiences." << endl;
+        }
+        menu(); break;
+
+    case 2:
         if (playerExp >= 500) {
             playerExp -= 500;
             playerWeaponType = "Golden Sword";
@@ -167,7 +151,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 2:
+    case 3:
         if (playerExp >= 200) {
             playerExp -= 200;
             playerWeaponType = "Wooden Sword";
@@ -178,7 +162,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 3: menu(); break;
+    case 4: menu(); break;
     }
 }
 
