@@ -4,6 +4,8 @@
 
 
 ## Version History
+> - Version 1.2.1 (5-Jul-20)
+>   - Improved interface design: Removing unnecessary information after each action
 > - Version 1.2.0 (5-Jul-20)
 >   - Created basic level up and power up system
 >   - Improved interface design
