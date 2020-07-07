@@ -223,7 +223,7 @@ void dungeon() {
         monsterMaxHealth = 500;
     }
     monsterHealth = monsterMaxHealth;
-   
+
     // weapon deduct monster health
     if (playerWeaponType == "Wooden Sword") {
         monsterHealth -= woodenswordAttackValue;
@@ -241,17 +241,21 @@ void dungeon() {
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 100% left..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Press ENTER to attack the monster." << RESET_COLOR << endl;
         }
-        else if (monsterHealth == (0.75 * monsterMaxHealth)) {
+        else if (monsterHealth == (0.8 * monsterMaxHealth)) {
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 75% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 80% left..." << RESET_COLOR << endl;
         }
-        else if (monsterHealth == (0.5 * monsterMaxHealth)) {
+        else if (monsterHealth == (0.6 * monsterMaxHealth)) {
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 50% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 60% left..." << RESET_COLOR << endl;
         }
-        else if (monsterHealth == (0.25 * monsterMaxHealth)) {
+        else if (monsterHealth == (0.4 * monsterMaxHealth)) {
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 25% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 40% left..." << RESET_COLOR << endl;
+        }
+        else if (monsterHealth == (0.2 * monsterMaxHealth)) {
+            system("clear");
+            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 20% left..." << RESET_COLOR << endl;
         }
 
         cin.ignore();
@@ -261,7 +265,7 @@ void dungeon() {
 
     if (monsterHealth <= 0) {
         system("clear");
-        dungeonReward(monsterMaxHealth/5);
+        dungeonReward(monsterMaxHealth / 5);
     }
 
 }
@@ -277,10 +281,11 @@ int main() {
 
     if (playerName == "") {
 
-        cout << BRIGHT_CYAN << "Dungeon Game" << RESET_COLOR << endl;
+        cout << endl;
+        cout << BRIGHT_CYAN << "         Dungeon Game" << RESET_COLOR << endl;
 
         cout << "https://github.com/wukimwa/game" << endl;
-        cout << endl;
+        cout << endl << endl << endl << endl << endl;
 
         cout << BRIGHT_YELLOW << "Login" << RESET_COLOR << endl;
         cout << "Username: " << BRIGHT_GREEN;
