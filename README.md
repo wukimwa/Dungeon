@@ -1,9 +1,11 @@
-## How To Run The Game [![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game)
+## How To Run The Dungeon Game [![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game)
 1. Click the link here 💻 https://repl.it/github/wukimwa/game 💻
 2. Click the RUN button on Repl.it
 
 
 ## Version History
+> - Version 1.2.2 (7-Jul-20)
+>   - Added new dungeon level
 > - Version 1.2.1 (6-Jul-20)
 >   - Improved interface design: Removing unnecessary information after each action
 > - Version 1.2.0 (5-Jul-20)
