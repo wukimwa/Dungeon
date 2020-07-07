@@ -9,8 +9,8 @@ void menu();
 void player();
 void levelup();
 void dungeon();
-void dungeonNormal();
-void dungeonReward();
+void dungeonMenu();
+void dungeonReward(int rewardEXP);
 void weaponStore();
 
 // global variable
@@ -27,6 +27,9 @@ int playerExp = 0;
 // weapon variable
 int playerWeaponLevel = 0;
 string playerWeaponType = "None";
+
+// dungeon variable
+string dungeonLevel;
 
 // const weapon value
 const int woodenswordAttackValue = 25;
@@ -49,9 +52,9 @@ void menu() {
         cout << endl;
 
         switch (number) {
-        case 1: system("cls"); player(); break;
-        case 2: system("cls"); dungeon(); break;
-        case 3: system("cls"); break;
+        case 1: system("clear"); player(); break;
+        case 2: system("clear"); dungeonMenu(); break;
+        case 3: system("clear"); break;
         }
 
     } while (number >= 1 && number <= 3);
@@ -76,15 +79,15 @@ void player() {
 
         switch (number) {
         case 1:
-            system("cls");
+            system("clear");
             cout << endl << endl;
-            cout << " Player Lv.: " << playerLv << endl;
-            cout << "Experiences: " << playerExp << " EXP" << endl;
+            cout << "Player Lv. " << playerLv << endl;
+            cout << "Experience: " << playerExp << " EXP" << endl << endl;
             cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
             break;
-        case 2: system("cls"); levelup(); break;
-        case 3: system("cls"); weaponStore(); break;
-        case 4: system("cls"); menu(); break;
+        case 2: system("clear"); levelup(); break;
+        case 3: system("clear"); weaponStore(); break;
+        case 4: system("clear"); menu(); break;
         }
 
     } while (number >= 1 && number <= 4);
@@ -104,7 +107,7 @@ void levelup() {
 
         switch (number) {
         case 1:
-            system("cls");
+            system("clear");
             if (playerExp >= 50) {
                 playerExp -= 50;
                 playerLv += 1;
@@ -115,7 +118,7 @@ void levelup() {
             }
             menu(); break;
 
-        case 2: system("cls"); menu(); break;
+        case 2: system("clear"); menu(); break;
         }
 
     } while (number >= 1 && number <= 2);
@@ -143,7 +146,7 @@ void weaponStore() {
 
     switch (number) {
     case 1:
-        system("cls");
+        system("clear");
         if (playerExp >= 50 && playerWeaponType != "None") {
             playerExp -= 50;
             playerWeaponLevel += 1;
@@ -158,7 +161,7 @@ void weaponStore() {
         menu(); break;
 
     case 2:
-        system("cls");
+        system("clear");
         if (playerExp >= 200) {
             playerExp -= 200;
             playerWeaponType = "Wooden Sword";
@@ -170,7 +173,7 @@ void weaponStore() {
         menu(); break;
 
     case 3:
-        system("cls");
+        system("clear");
         if (playerExp >= 500) {
             playerExp -= 500;
             playerWeaponType = "Golden Sword";
@@ -181,38 +184,46 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 4: system("cls"); menu(); break;
+    case 4: system("clear"); menu(); break;
     }
 }
 
-void dungeon() {
+void dungeonMenu() {
     int number = 0;
 
     do {
-        
+
         cout << endl << endl;
         cout << "-----Dungeon Menu-----" << endl;
-        cout << "1) ENTER Normal Dungeon" << endl;
-        cout << "2) Exit To Menu" << endl;
+        cout << "1) ENTER Dungeon  (Normal)" << endl;
+        cout << "2) ENTER Dungeon   (Hard)" << endl;
+        cout << "3) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
 
         switch (number) {
-        case 1: system("cls"); dungeonNormal(); break;
-        case 2: system("cls"); menu(); break;
+        case 1: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
+        case 2: system("clear"); dungeonLevel = "Hard"; dungeon(); break;
+        case 3: system("clear"); menu(); break;
         }
 
     } while (number >= 1 && number <= 3);
 }
 
-void dungeonNormal() {
+void dungeon() {
 
-    int attack;
-    int attacking = 0;
+    // dungeon monster health
 
-    int monsterMaxHealth = 200; // dungeon monster health
-    int monsterHealth = monsterMaxHealth;
+    int monsterHealth, monsterMaxHealth;
 
+    if (dungeonLevel == "Normal") {
+        monsterMaxHealth = 200;
+    }
+    else if (dungeonLevel == "Hard") {
+        monsterMaxHealth = 500;
+    }
+    monsterHealth = monsterMaxHealth;
+   
     // weapon deduct monster health
     if (playerWeaponType == "Wooden Sword") {
         monsterHealth -= woodenswordAttackValue;
@@ -226,16 +237,20 @@ void dungeonNormal() {
     do {
 
         if (monsterHealth == monsterMaxHealth) {
+            system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 100% left..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Press ENTER to attack the monster." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.75 * monsterMaxHealth)) {
+            system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 75% left..." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.5 * monsterMaxHealth)) {
+            system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 50% left..." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.25 * monsterMaxHealth)) {
+            system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 25% left..." << RESET_COLOR << endl;
         }
 
@@ -245,16 +260,16 @@ void dungeonNormal() {
     } while (monsterHealth > 0);
 
     if (monsterHealth <= 0) {
-        system("cls");
-        dungeonReward();
+        system("clear");
+        dungeonReward(monsterMaxHealth/5);
     }
 
 }
 
-void dungeonReward() {
+void dungeonReward(int rewardEXP) {
     cout << endl << BRIGHT_YELLOW << "Dungeon Completed" << RESET_COLOR << endl;
-    cout << endl << "Rewards: " << 50 << "EXP" << endl << endl;
-    playerExp += 50;
+    cout << endl << "Rewards: " << rewardEXP << "EXP" << endl << endl;
+    playerExp += rewardEXP;
     menu();
 }
 
@@ -271,7 +286,9 @@ int main() {
         cout << "Username: " << BRIGHT_GREEN;
         cin >> playerName;
         cout << RESET_COLOR << endl;
-        system("cls");
+
+        system("clear");
+
         menu();
     }
 
