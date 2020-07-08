@@ -33,7 +33,8 @@ string dungeonLevel;
 
 // const weapon value
 const int woodenswordAttackValue = 25;
-const int goldenswordAttackValue = 50;
+const int silverswordAttackValue = 45;
+const int goldenswordAttackValue = 65;
 
 
 void menu() {
@@ -138,16 +139,21 @@ void weaponStore() {
     cout << "-----Dungeon Weapon Store-----" << endl;
     cout << BRIGHT_YELLOW << setw(26) << playerExp << RESET_COLOR << " EXP" << endl << endl;
 
-    cout << "Wooden Sword";
-    cout << " (-" << woodenswordAttackValue << " Monster MAX Health)" << endl;
-    cout << "Golden Sword";
-    cout << " (-" << goldenswordAttackValue << " Monster MAX Health)" << endl;
+    cout << BRIGHT_CYAN << "Price  " << BRIGHT_YELLOW << "  Weapon Type" << RESET_COLOR;
+    cout << endl;
+    cout << "300EXP   Wooden Sword   ";
+    cout << " (-" << woodenswordAttackValue << " Monster MAX HP)" << endl;
+    cout << "550EXP   Silver Sword   ";
+    cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
+    cout << "800EXP   Golden Sword   ";
+    cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
 
     cout << endl << endl;
 
-    cout << "1) (Cost  50EXP) Weapon Power Up" << endl;
-    cout << "2) (Cost 200EXP) Get a Wooden Sword" << endl;
-    cout << "3) (Cost 500EXP) Get a Golden Sword" << endl;
+    cout << "1) Weapon Power Up (Cost  50EXP)" << endl;
+    cout << "2) Get a Wooden Sword" << endl;
+    cout << "2) Get a Silver Sword" << endl;
+    cout << "3) Get a Golden Sword" << endl;
     cout << "4) Exit To Menu" << endl;
     cin >> number;
 
@@ -169,8 +175,8 @@ void weaponStore() {
 
     case 2:
         system("clear");
-        if (playerExp >= 200) {
-            playerExp -= 200;
+        if (playerExp >= 300) {
+            playerExp -= 300;
             playerWeaponType = "Wooden Sword";
             cout << playerWeaponType << " purchased" << endl;
         }
@@ -181,8 +187,20 @@ void weaponStore() {
 
     case 3:
         system("clear");
-        if (playerExp >= 500) {
-            playerExp -= 500;
+        if (playerExp >= 550) {
+            playerExp -= 550;
+            playerWeaponType = "Silver Sword";
+            cout << playerWeaponType << " purchased" << endl;
+        }
+        else {
+            cout << "You do not have enough experiences." << endl;
+        }
+        menu(); break;
+
+    case 4:
+        system("clear");
+        if (playerExp >= 800) {
+            playerExp -= 800;
             playerWeaponType = "Golden Sword";
             cout << playerWeaponType << " purchased" << endl;
         }
@@ -191,7 +209,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 4: system("clear"); menu(); break;
+    case 5: system("clear"); menu(); break;
     }
 }
 
@@ -262,6 +280,9 @@ void dungeon() {
     // weapon deduct monster health
     if (playerWeaponType == "Wooden Sword") {
         monsterHealth -= woodenswordAttackValue;
+    }
+    else if (playerWeaponType == "Silver Sword") {
+        monsterHealth -= goldenswordAttackValue;
     }
     else if (playerWeaponType == "Golden Sword") {
         monsterHealth -= goldenswordAttackValue;
