@@ -213,8 +213,26 @@ void dungeonMenu() {
         switch (number) {
         case 1: system("clear"); dungeonLevel = "Easy"; dungeon(); break;
         case 2: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
-        case 3: system("clear"); dungeonLevel = "Hard"; dungeon(); break;
-        case 4: system("clear"); dungeonLevel = "Mythic"; dungeon(); break;
+        case 3:
+            system("clear");
+            if (playerLv >= 5) {
+                dungeonLevel = "Hard";
+                dungeon();
+            }
+            else {
+                cout << "The dungeon is now locked.";
+            }
+            break;
+        case 4:
+            system("clear");
+            if (playerLv >= 15) {
+                dungeonLevel = "Mythic";
+                dungeon();
+            }
+            else {
+                cout << "The dungeon is now locked.";
+            }
+            break;
         case 5: system("clear"); menu(); break;
         }
 
