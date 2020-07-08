@@ -56,6 +56,9 @@ void menu() {
         case 1: system("clear"); player(); break;
         case 2: system("clear"); dungeonMenu(); break;
         case 3: system("clear"); break;
+        default:
+            system("clear");
+            menu();
         }
 
     } while (number >= 1 && number <= 3);
@@ -152,9 +155,9 @@ void weaponStore() {
 
     cout << "1) Weapon Power Up (Cost 50EXP)" << endl;
     cout << "2) Get a Wooden Sword" << endl;
-    cout << "2) Get a Silver Sword" << endl;
-    cout << "3) Get a Golden Sword" << endl;
-    cout << "4) Exit To Menu" << endl;
+    cout << "3) Get a Silver Sword" << endl;
+    cout << "4) Get a Golden Sword" << endl;
+    cout << "5) Exit To Menu" << endl;
     cin >> number;
 
     switch (number) {
