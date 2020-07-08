@@ -4,6 +4,9 @@
 
 
 ## Version History
+> - Version 1.2.3 (8-Jul-20)
+>   - Added new dungeon level with unlock requirement
+>   - Added new weapon type and improved user interface
 > - Version 1.2.2 (7-Jul-20)
 >   - Added new dungeon level
 > - Version 1.2.1 (6-Jul-20)
