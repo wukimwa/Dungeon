@@ -88,7 +88,7 @@ void player() {
 
             cout << endl;
             cin.ignore();
-            cout << "Press ENTER to continue...";
+            cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
             cin.ignore();
 
             system("clear");
@@ -150,7 +150,7 @@ void weaponStore() {
 
     cout << endl << endl;
 
-    cout << "1) Weapon Power Up (Cost  50EXP)" << endl;
+    cout << "1) Weapon Power Up (Cost 50EXP)" << endl;
     cout << "2) Get a Wooden Sword" << endl;
     cout << "2) Get a Silver Sword" << endl;
     cout << "3) Get a Golden Sword" << endl;
@@ -167,9 +167,11 @@ void weaponStore() {
         }
         else if (playerWeaponType == "None") {
             cout << "You do not have any weapon." << endl;
+            weaponStore();
         }
         else {
             cout << "You do not have enough experiences." << endl;
+            weaponStore();
         }
         menu(); break;
 
@@ -182,6 +184,7 @@ void weaponStore() {
         }
         else {
             cout << "You do not have enough experiences." << endl;
+            weaponStore();
         }
         menu(); break;
 
@@ -194,6 +197,7 @@ void weaponStore() {
         }
         else {
             cout << "You do not have enough experiences." << endl;
+            weaponStore();
         }
         menu(); break;
 
@@ -206,6 +210,7 @@ void weaponStore() {
         }
         else {
             cout << "You do not have enough experiences." << endl;
+            weaponStore();
         }
         menu(); break;
 
@@ -239,6 +244,7 @@ void dungeonMenu() {
             }
             else {
                 cout << "The dungeon is now locked.";
+                dungeonMenu();
             }
             break;
         case 4:
@@ -249,6 +255,7 @@ void dungeonMenu() {
             }
             else {
                 cout << "The dungeon is now locked.";
+                dungeonMenu();
             }
             break;
         case 5: system("clear"); menu(); break;
