@@ -202,16 +202,20 @@ void dungeonMenu() {
 
         cout << endl << endl;
         cout << "-----Dungeon Menu-----" << endl;
-        cout << "1) ENTER Dungeon  (Normal)" << endl;
-        cout << "2) ENTER Dungeon   (Hard)" << endl;
-        cout << "3) Exit To Menu" << endl;
+        cout << "1) ENTER Dungeon  [ Easy ]" << endl;
+        cout << "2) ENTER Dungeon  [Normal]" << endl;
+        cout << "3) ENTER Dungeon  " << BRIGHT_CYAN << "[ Hard ] [Lv.05 Unlock]" << RESET_COLOR << endl;
+        cout << "4) ENTER Dungeon  " << BRIGHT_YELLOW << "[Mythic] [Lv.15 Unlock]" << RESET_COLOR << endl;
+        cout << "5) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
 
         switch (number) {
-        case 1: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
-        case 2: system("clear"); dungeonLevel = "Hard"; dungeon(); break;
-        case 3: system("clear"); menu(); break;
+        case 1: system("clear"); dungeonLevel = "Easy"; dungeon(); break;
+        case 2: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
+        case 3: system("clear"); dungeonLevel = "Hard"; dungeon(); break;
+        case 4: system("clear"); dungeonLevel = "Mythic"; dungeon(); break;
+        case 5: system("clear"); menu(); break;
         }
 
     } while (number >= 1 && number <= 3);
@@ -223,11 +227,17 @@ void dungeon() {
 
     int monsterHealth, monsterMaxHealth;
 
-    if (dungeonLevel == "Normal") {
+    if (dungeonLevel == "Easy") {
+        monsterMaxHealth = 50;
+    }
+    else if (dungeonLevel == "Normal") {
         monsterMaxHealth = 200;
     }
     else if (dungeonLevel == "Hard") {
         monsterMaxHealth = 500;
+    }
+    else if (dungeonLevel == "Mythic") {
+        monsterMaxHealth = 2000;
     }
     monsterHealth = monsterMaxHealth;
 
