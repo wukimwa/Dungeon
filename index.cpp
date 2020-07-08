@@ -84,6 +84,13 @@ void player() {
             cout << "Player Lv. " << playerLv << endl;
             cout << "Experience: " << playerExp << " EXP" << endl << endl;
             cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
+
+            cout << endl;
+            cin.ignore();
+            cout << "Press ENTER to continue...";
+            cin.ignore();
+
+            system("clear");
             break;
         case 2: system("clear"); levelup(); break;
         case 3: system("clear"); weaponStore(); break;
