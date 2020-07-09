@@ -22,7 +22,7 @@ const string BRIGHT_CYAN = "\033[96m";
 
 // player variable
 string playerName;
-int playerExp = 500;
+int playerExp = 0;
 int playerSpentExp = 0;
 
 int playerLv;
