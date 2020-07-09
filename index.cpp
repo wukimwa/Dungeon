@@ -7,7 +7,7 @@ using namespace std;
 // function header
 void menu();
 void player();
-void levelup();
+void showInfo();
 void dungeon();
 void dungeonMenu();
 void dungeonReward(int rewardEXP);
@@ -24,7 +24,7 @@ string playerName;
 int playerExp = 0;
 int playerSpentExp = 0;
 
-int playerLv = 0;
+int playerLv;
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -39,16 +39,22 @@ const int silverswordAttackValue = 45;
 const int goldenswordAttackValue = 65;
 
 
+void showInfo() {
+    cout << left << BRIGHT_GREEN << setw(11) << playerName << RESET_COLOR;
+    cout << " Lv. " << BRIGHT_CYAN << setw(6) << playerLv << RESET_COLOR;
+    cout << " EXP " << BRIGHT_YELLOW << setw(6) << playerExp << RESET_COLOR;
+    cout << right; // default
+}
+
 void menu() {
     int number = 0;
     playerLv = (playerExp + playerSpentExp) / 50;
 
-    do {
+    showInfo();
 
+    do {
         cout << endl << endl;
         cout << "-----       Main Menu      -----" << endl;
-        cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
-
         cout << "1) Player" << endl;
         cout << "2) Dungeon" << endl;
         cout << "3) Exit Game" << endl;
@@ -70,13 +76,14 @@ void menu() {
 
 void player() {
     int number = 0;
+    playerLv = (playerExp + playerSpentExp) / 50;
+
+    showInfo();
 
     do {
 
         cout << endl << endl;
         cout << "-----      Player Menu     -----" << endl;
-        cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
-
         cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
         cout << "2) Weapon Store" << endl;
         cout << "3) Level Up Rewards" << endl;
@@ -88,9 +95,7 @@ void player() {
         case 1:
             system("clear");
             cout << endl << endl;
-            cout << "Player Lv. " << playerLv << endl;
-            cout << "Experience: " << playerExp << " EXP" << endl << endl;
-            cout << "Weapon Type: " << playerWeaponType << " (Level " << playerWeaponLevel << ")" << endl;
+            
 
             cout << endl;
             cin.ignore();
@@ -110,9 +115,11 @@ void player() {
 
 void weaponStore() {
     int number = 0;
-    cout << endl;
+    playerLv = (playerExp + playerSpentExp) / 50;
+
+    showInfo();
+
     cout << "----- Dungeon Weapon Store -----" << endl;
-    cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
 
     cout << BRIGHT_CYAN << "Price  " << BRIGHT_YELLOW << "  Weapon Type" << RESET_COLOR;
     cout << endl;
@@ -195,12 +202,15 @@ void weaponStore() {
 
 void dungeonMenu() {
     int number = 0;
+    playerLv = (playerExp + playerSpentExp) / 50;
+
+    showInfo();
 
     do {
 
         cout << endl << endl;
         cout << "-----     Dungeon Menu     -----" << endl;
-        cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
+
         cout << "1) ENTER Dungeon  [ Easy ]" << endl;
         cout << "2) ENTER Dungeon  [Normal]" << endl;
         cout << "3) ENTER Dungeon  " << BRIGHT_CYAN << "[ Hard ] [Lv.05 Unlock]" << RESET_COLOR << endl;
