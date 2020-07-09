@@ -363,6 +363,11 @@ void dungeonReward(int rewardEXP) {
     cout << endl << BRIGHT_YELLOW << "Dungeon Completed" << RESET_COLOR << endl;
     cout << endl << "Rewards: " << rewardEXP << "EXP" << endl << endl;
     playerExp += rewardEXP;
+
+    cin.ignore();
+    cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
+    cin.ignore();
+    
     menu();
 }
 
