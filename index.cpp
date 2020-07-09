@@ -21,8 +21,10 @@ const string BRIGHT_CYAN = "\033[96m";
 
 // player variable
 string playerName;
-int playerLv = 0;
 int playerExp = 0;
+int playerSpentExp = 0;
+
+int playerLv = 0;
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -39,6 +41,7 @@ const int goldenswordAttackValue = 65;
 
 void menu() {
     int number = 0;
+    playerLv = (playerExp + playerSpentExp) / 50;
 
     do {
 
@@ -75,8 +78,8 @@ void player() {
         cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
 
         cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
-        cout << "2) Level Up" << endl;
-        cout << "3) Weapon Store" << endl;
+        cout << "2) Weapon Store" << endl;
+        cout << "3) Level Up Rewards" << endl;
         cout << "4) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
@@ -96,44 +99,12 @@ void player() {
 
             system("clear");
             break;
-        case 2: system("clear"); levelup(); break;
-        case 3: system("clear"); weaponStore(); break;
+        case 2: system("clear"); weaponStore(); break;
+        case 3: system("clear"); cout << "Level Up Rewards Developing"; break;
         case 4: system("clear"); menu(); break;
         }
 
     } while (number >= 1 && number <= 4);
-}
-
-void levelup() {
-    int number = 0;
-
-    do {
-
-        cout << endl << endl;
-        cout << "-----       Level Up       -----" << endl;
-        cout << BRIGHT_YELLOW << setw(28) << playerExp << RESET_COLOR << " EXP" << endl << endl;
-        cout << "1) Player Level +1 (Cost 50EXP) " << endl;
-        cout << "2) Exit To Menu" << endl;
-        cin >> number;
-        cout << endl;
-
-        switch (number) {
-        case 1:
-            system("clear");
-            if (playerExp >= 50) {
-                playerExp -= 50;
-                playerLv += 1;
-                cout << "Level Up!" << endl;
-            }
-            else {
-                cout << "You do not have enough experiences." << endl;
-            }
-            menu(); break;
-
-        case 2: system("clear"); menu(); break;
-        }
-
-    } while (number >= 1 && number <= 2);
 }
 
 
