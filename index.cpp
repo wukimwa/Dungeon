@@ -88,7 +88,7 @@ void menu() {
 
 void player() {
     int number = 0;
-    playerLv = (playerExp + playerSpentExp) / 50;
+    playerLv = (playerSpentExp * 0.2 + playerExp) / 50;
 
     showInfo();
 
@@ -180,6 +180,7 @@ void weaponStore() {
         system("clear");
         if (playerExp >= 50 && playerWeaponType != "None") {
             playerExp -= 50;
+            playerSpentExp += 50;
             playerWeaponLevel += 1;
             cout << "Power Up!" << endl << endl;
         }
@@ -197,6 +198,7 @@ void weaponStore() {
         system("clear");
         if (playerExp >= 300) {
             playerExp -= 300;
+            playerSpentExp += 300;
             playerWeaponType = "Wooden Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
         }
@@ -210,6 +212,7 @@ void weaponStore() {
         system("clear");
         if (playerExp >= 550) {
             playerExp -= 550;
+            playerSpentExp += 550;
             playerWeaponType = "Silver Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
         }
@@ -223,6 +226,7 @@ void weaponStore() {
         system("clear");
         if (playerExp >= 800) {
             playerExp -= 800;
+            playerSpentExp += 800;
             playerWeaponType = "Golden Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
         }
