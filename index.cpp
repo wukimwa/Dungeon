@@ -22,10 +22,12 @@ const string BRIGHT_CYAN = "\033[96m";
 
 // player variable
 string playerName;
-int playerExp = 0;
+int playerExp = 500;
 int playerSpentExp = 0;
 
 int playerLv;
+
+int bonusATK = 0; // level up rewards variable
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -50,6 +52,15 @@ void showInfo() {
 void menu() {
     int number = 0;
     playerLv = (playerExp + playerSpentExp) / 50;
+
+    if (playerLv >= 5)
+        bonusATK = 1;
+    else if (playerLv >= 10)
+        bonusATK = 2;
+    else if (playerLv >= 15)
+        bonusATK = 4;
+    else if (playerLv >= 20)
+        bonusATK = 6;
 
     showInfo();
 
@@ -106,7 +117,29 @@ void player() {
             system("clear");
             break;
         case 2: system("clear"); weaponStore(); break;
-        case 3: system("clear"); cout << "Level Up Rewards Developing"; break;
+        case 3:
+            system("clear");
+            cout << BRIGHT_CYAN << "Level Up Rewards" << RESET_COLOR << endl << endl;
+            cout << "Level      Rewards" << endl;
+
+
+            (playerLv >= 5) ? cout << BRIGHT_YELLOW : cout;
+            cout << "Lv. 05" << "     " << "+1 ATK value" << endl;
+            (playerLv < 10) ? cout << RESET_COLOR : cout;
+
+            cout << "Lv. 10" << "     " << "+1 ATK value" << endl;
+            (playerLv < 15) ? cout << RESET_COLOR : cout;
+
+            cout << "Lv. 15" << "     " << "+2 ATK value" << endl;
+            (playerLv < 20) ? cout << RESET_COLOR : cout;
+
+            cout << "Lv. 20" << "     " << "+2 ATK value" << endl;
+            cout << RESET_COLOR;
+
+
+            cout << endl;
+            cout << "Total Bonus Added: " << " ATK";
+            break;
         case 4: system("clear"); menu(); break;
         }
 
@@ -131,7 +164,7 @@ void weaponStore() {
     cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
     cout << "800 EXP    Golden Sword   ";
     cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "Current   " << setw(12) << playerWeaponType << endl;
+    cout << "Current    " << BRIGHT_YELLOW << setw(12) << playerWeaponType << RESET_COLOR << endl;
 
     cout << endl << endl;
 
@@ -284,6 +317,8 @@ void dungeon() {
         monsterHealth -= goldenswordAttackValue;
     }
 
+    // level up rewards deduct monster health
+    monsterHealth -= bonusATK;
 
 
     do {
@@ -296,18 +331,22 @@ void dungeon() {
         else if (monsterHealth == (0.8 * monsterMaxHealth)) {
             system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 80% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.6 * monsterMaxHealth)) {
             system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 60% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.4 * monsterMaxHealth)) {
             system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 40% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.2 * monsterMaxHealth)) {
             system("clear");
             cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 20% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
 
         cin.ignore();
