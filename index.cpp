@@ -120,6 +120,7 @@ void weaponStore() {
 
     showInfo();
 
+    cout << endl << endl;
     cout << "----- Dungeon Weapon Store -----" << endl;
 
     cout << BRIGHT_CYAN << "Price  " << BRIGHT_YELLOW << "  Weapon Type" << RESET_COLOR;
@@ -130,6 +131,7 @@ void weaponStore() {
     cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
     cout << "800EXP   Golden Sword   ";
     cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
+    cout << "Current  " << setw(12) << playerWeaponType << endl;
 
     cout << endl << endl;
 
