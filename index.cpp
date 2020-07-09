@@ -125,13 +125,13 @@ void weaponStore() {
 
     cout << BRIGHT_CYAN << "Price  " << BRIGHT_YELLOW << "  Weapon Type" << RESET_COLOR;
     cout << endl;
-    cout << "300EXP   Wooden Sword   ";
+    cout << "300 EXP    Wooden Sword   ";
     cout << " (-" << woodenswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "550EXP   Silver Sword   ";
+    cout << "550 EXP    Silver Sword   ";
     cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "800EXP   Golden Sword   ";
+    cout << "800 EXP    Golden Sword   ";
     cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "Current  " << setw(12) << playerWeaponType << endl;
+    cout << "Current   " << setw(12) << playerWeaponType << endl;
 
     cout << endl << endl;
 
@@ -232,7 +232,7 @@ void dungeonMenu() {
                 dungeon();
             }
             else {
-                cout << "The dungeon is now locked." << endl << endl;
+                cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
                 dungeonMenu();
             }
             break;
@@ -243,7 +243,7 @@ void dungeonMenu() {
                 dungeon();
             }
             else {
-                cout << "The dungeon is now locked." << endl << endl;
+                cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
                 dungeonMenu();
             }
             break;
