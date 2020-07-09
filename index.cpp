@@ -27,7 +27,7 @@ int playerSpentExp = 0;
 
 int playerLv;
 
-int bonusATK = 0; // level up rewards variable
+int bonusATK; // level up rewards variable
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -96,28 +96,15 @@ void player() {
 
         cout << endl << endl;
         cout << "-----      Player Menu     -----" << endl;
-        cout << "1) View " << BRIGHT_GREEN << playerName << RESET_COLOR << " Information" << endl;
-        cout << "2) Weapon Store" << endl;
-        cout << "3) Level Up Rewards" << endl;
-        cout << "4) Exit To Menu" << endl;
+        cout << "1) Weapon Store" << endl;
+        cout << "2) Level Up Rewards" << endl;
+        cout << "3) Exit To Menu" << endl;
         cin >> number;
         cout << endl;
 
         switch (number) {
-        case 1:
-            system("clear");
-            cout << endl << endl;
-
-
-            cout << endl;
-            cin.ignore();
-            cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
-            cin.ignore();
-
-            system("clear");
-            break;
-        case 2: system("clear"); weaponStore(); break;
-        case 3:
+        case 1: system("clear"); weaponStore(); break;
+        case 2:
             system("clear");
             cout << BRIGHT_CYAN << "Level Up Rewards" << RESET_COLOR << endl << endl;
             cout << "Level      Rewards" << endl;
@@ -136,14 +123,19 @@ void player() {
             cout << "Lv. 20" << "     " << "+2 ATK value" << endl;
             cout << RESET_COLOR;
 
-
             cout << endl;
-            cout << "Total Bonus Added: " << " ATK";
+            cout << "Total Bonus Added: " << BRIGHT_YELLOW << bonusATK << RESET_COLOR << " ATK" << endl;
+            cout << endl;
+
+            cin.ignore();
+            cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
+            cin.ignore();
+
             break;
-        case 4: system("clear"); menu(); break;
+        case 3: system("clear"); menu(); break;
         }
 
-    } while (number >= 1 && number <= 4);
+    } while (number >= 1 && number <= 3);
 }
 
 
@@ -164,7 +156,13 @@ void weaponStore() {
     cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
     cout << "800 EXP    Golden Sword   ";
     cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "Current    " << BRIGHT_YELLOW << setw(12) << playerWeaponType << RESET_COLOR << endl;
+
+    // player weapon
+    cout << endl;
+    cout << BRIGHT_YELLOW;
+    cout << "Current    " << setw(12) << playerWeaponType;
+    cout << "    (Lv." << playerWeaponLevel << ")" << endl;
+    cout << RESET_COLOR;
 
     cout << endl << endl;
 
