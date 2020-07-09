@@ -7,11 +7,12 @@ using namespace std;
 // function header
 void menu();
 void player();
-void showInfo();
 void dungeon();
+void showInfo();
+void weaponStore();
 void dungeonMenu();
 void dungeonReward(int rewardEXP);
-void weaponStore();
+
 
 // global variable
 const string RESET_COLOR = "\033[0m";
@@ -20,13 +21,17 @@ const string BRIGHT_GREEN = "\033[92m";
 const string BRIGHT_YELLOW = "\033[93m";
 const string BRIGHT_CYAN = "\033[96m";
 
+// const weapon value
+const int woodenswordAttackValue = 25;
+const int silverswordAttackValue = 45;
+const int goldenswordAttackValue = 65;
+
 // player variable
 string playerName;
 int playerExp = 0;
 int playerSpentExp = 0;
 
 int playerLv;
-
 int bonusATK; // level up rewards variable
 
 // weapon variable
@@ -35,11 +40,6 @@ string playerWeaponType = "None";
 
 // dungeon variable
 string dungeonLevel;
-
-// const weapon value
-const int woodenswordAttackValue = 25;
-const int silverswordAttackValue = 45;
-const int goldenswordAttackValue = 65;
 
 
 void showInfo() {
@@ -150,7 +150,7 @@ void weaponStore() {
     cout << endl << endl;
     cout << "----- Dungeon Weapon Store -----" << endl;
 
-    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    Notes" << RESET_COLOR;
+    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    (Notes)" << RESET_COLOR;
     cout << endl;
     cout << "300 EXP    Wooden Sword   ";
     cout << " (-" << woodenswordAttackValue << " Monster MAX HP)" << endl;
@@ -370,6 +370,7 @@ void dungeonReward(int rewardEXP) {
     cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
     cin.ignore();
 
+    system("clear");
     menu();
 }
 
