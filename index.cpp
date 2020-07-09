@@ -131,6 +131,8 @@ void player() {
             cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
             cin.ignore();
 
+            system("clear");
+
             break;
         case 3: system("clear"); menu(); break;
         }
@@ -148,7 +150,7 @@ void weaponStore() {
     cout << endl << endl;
     cout << "----- Dungeon Weapon Store -----" << endl;
 
-    cout << BRIGHT_CYAN << "Price  " << BRIGHT_YELLOW << "  Weapon Type" << RESET_COLOR;
+    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    Notes" << RESET_COLOR;
     cout << endl;
     cout << "300 EXP    Wooden Sword   ";
     cout << " (-" << woodenswordAttackValue << " Monster MAX HP)" << endl;
@@ -164,7 +166,7 @@ void weaponStore() {
     cout << "    (Lv." << playerWeaponLevel << ")" << endl;
     cout << RESET_COLOR;
 
-    cout << endl << endl;
+    cout << endl;
 
     cout << "1) Weapon Power Up (Cost 50EXP)" << endl;
     cout << "2) Get a Wooden Sword" << endl;
@@ -367,7 +369,7 @@ void dungeonReward(int rewardEXP) {
     cin.ignore();
     cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
     cin.ignore();
-    
+
     menu();
 }
 
