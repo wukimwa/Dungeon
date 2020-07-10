@@ -64,25 +64,21 @@ void menu() {
 
     showInfo();
 
-    do {
-        cout << endl << endl;
-        cout << "-----       Main Menu      -----" << endl;
-        cout << "1) Player" << endl;
-        cout << "2) Dungeon" << endl;
-        cout << "3) Exit Game" << endl;
-        cin >> number;
-        cout << endl;
+    cout << endl << endl;
+    cout << "-----       Main Menu      -----" << endl;
+    cout << "1) Player" << endl;
+    cout << "2) Dungeon" << endl;
+    cout << "3) Exit Game" << endl;
+    
+    cin >> number;
+    switch (number) {
+    case 1: system("clear"); playerMenu(); break;
+    case 2: system("clear"); dungeonMenu(); break;
+    case 3: system("clear"); break;
+    default: system("clear"); menu();
+    }
 
-        switch (number) {
-        case 1: system("clear"); playerMenu(); break;
-        case 2: system("clear"); dungeonMenu(); break;
-        case 3: system("clear"); break;
-        default:
-            system("clear");
-            menu();
-        }
 
-    } while (number >= 1 && number <= 3);
 
 }
 
@@ -92,52 +88,49 @@ void playerMenu() {
 
     showInfo();
 
-    do {
+    cout << endl << endl;
+    cout << "-----      Player Menu     -----" << endl;
+    cout << "1) Weapon Store" << endl;
+    cout << "2) Level Up Rewards" << endl;
+    cout << "3) Exit To Menu" << endl;
 
-        cout << endl << endl;
-        cout << "-----      Player Menu     -----" << endl;
-        cout << "1) Weapon Store" << endl;
-        cout << "2) Level Up Rewards" << endl;
-        cout << "3) Exit To Menu" << endl;
-        cin >> number;
+    cin >> number;
+    switch (number) {
+    case 1: system("clear"); weaponStore(); break;
+    case 2:
+        system("clear");
+        cout << BRIGHT_CYAN << "Level Up Rewards" << RESET_COLOR << endl << endl;
+        cout << "Level      Rewards" << endl;
+
+
+        (playerLv >= 5) ? cout << BRIGHT_YELLOW : cout;
+        cout << "Lv. 05" << "     " << "+1 ATK value" << endl;
+        (playerLv < 10) ? cout << RESET_COLOR : cout;
+
+        cout << "Lv. 10" << "     " << "+1 ATK value" << endl;
+        (playerLv < 15) ? cout << RESET_COLOR : cout;
+
+        cout << "Lv. 15" << "     " << "+2 ATK value" << endl;
+        (playerLv < 20) ? cout << RESET_COLOR : cout;
+
+        cout << "Lv. 20" << "     " << "+2 ATK value" << endl;
+        cout << RESET_COLOR;
+
+        cout << endl;
+        cout << "Total Bonus Added: " << BRIGHT_YELLOW << bonusATK << RESET_COLOR << " ATK" << endl;
         cout << endl;
 
-        switch (number) {
-        case 1: system("clear"); weaponStore(); break;
-        case 2:
-            system("clear");
-            cout << BRIGHT_CYAN << "Level Up Rewards" << RESET_COLOR << endl << endl;
-            cout << "Level      Rewards" << endl;
+        cin.ignore();
+        cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
+        cin.ignore();
 
+        system("clear");
 
-            (playerLv >= 5) ? cout << BRIGHT_YELLOW : cout;
-            cout << "Lv. 05" << "     " << "+1 ATK value" << endl;
-            (playerLv < 10) ? cout << RESET_COLOR : cout;
+        break;
+    case 3: system("clear"); menu(); break;
+    default: system("clear"); menu();
+    }
 
-            cout << "Lv. 10" << "     " << "+1 ATK value" << endl;
-            (playerLv < 15) ? cout << RESET_COLOR : cout;
-
-            cout << "Lv. 15" << "     " << "+2 ATK value" << endl;
-            (playerLv < 20) ? cout << RESET_COLOR : cout;
-
-            cout << "Lv. 20" << "     " << "+2 ATK value" << endl;
-            cout << RESET_COLOR;
-
-            cout << endl;
-            cout << "Total Bonus Added: " << BRIGHT_YELLOW << bonusATK << RESET_COLOR << " ATK" << endl;
-            cout << endl;
-
-            cin.ignore();
-            cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
-            cin.ignore();
-
-            system("clear");
-
-            break;
-        case 3: system("clear"); menu(); break;
-        }
-
-    } while (number >= 1 && number <= 3);
 }
 
 
@@ -173,8 +166,8 @@ void weaponStore() {
     cout << "3) Get a Silver Sword" << endl;
     cout << "4) Get a Golden Sword" << endl;
     cout << "5) Exit To Menu" << endl;
-    cin >> number;
 
+    cin >> number;
     switch (number) {
     case 1:
         system("clear");
@@ -237,6 +230,7 @@ void weaponStore() {
         menu(); break;
 
     case 5: system("clear"); menu(); break;
+    default: system("clear"); menu();
     }
 }
 
@@ -246,48 +240,45 @@ void dungeonMenu() {
 
     showInfo();
 
-    do {
+    cout << endl << endl;
+    cout << "-----     Dungeon Menu     -----" << endl;
 
-        cout << endl << endl;
-        cout << "-----     Dungeon Menu     -----" << endl;
+    cout << "1) ENTER Dungeon  [ Easy ]" << endl;
+    cout << "2) ENTER Dungeon  [Normal]" << endl;
+    cout << "3) ENTER Dungeon  " << BRIGHT_CYAN << "[ Hard ] [Lv.05 Unlock]" << RESET_COLOR << endl;
+    cout << "4) ENTER Dungeon  " << BRIGHT_YELLOW << "[Mythic] [Lv.15 Unlock]" << RESET_COLOR << endl;
+    cout << "5) Exit To Menu" << endl;
 
-        cout << "1) ENTER Dungeon  [ Easy ]" << endl;
-        cout << "2) ENTER Dungeon  [Normal]" << endl;
-        cout << "3) ENTER Dungeon  " << BRIGHT_CYAN << "[ Hard ] [Lv.05 Unlock]" << RESET_COLOR << endl;
-        cout << "4) ENTER Dungeon  " << BRIGHT_YELLOW << "[Mythic] [Lv.15 Unlock]" << RESET_COLOR << endl;
-        cout << "5) Exit To Menu" << endl;
-        cin >> number;
-        cout << endl;
-
-        switch (number) {
-        case 1: system("clear"); dungeonLevel = "Easy"; dungeon(); break;
-        case 2: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
-        case 3:
-            system("clear");
-            if (playerLv >= 5) {
-                dungeonLevel = "Hard";
-                dungeon();
-            }
-            else {
-                cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
-                dungeonMenu();
-            }
-            break;
-        case 4:
-            system("clear");
-            if (playerLv >= 15) {
-                dungeonLevel = "Mythic";
-                dungeon();
-            }
-            else {
-                cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
-                dungeonMenu();
-            }
-            break;
-        case 5: system("clear"); menu(); break;
+    cin >> number;
+    switch (number) {
+    case 1: system("clear"); dungeonLevel = "Easy"; dungeon(); break;
+    case 2: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
+    case 3:
+        system("clear");
+        if (playerLv >= 5) {
+            dungeonLevel = "Hard";
+            dungeon();
         }
+        else {
+            cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
+            dungeonMenu();
+        }
+        break;
+    case 4:
+        system("clear");
+        if (playerLv >= 15) {
+            dungeonLevel = "Mythic";
+            dungeon();
+        }
+        else {
+            cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
+            dungeonMenu();
+        }
+        break;
+    case 5: system("clear"); menu(); break;
+    default: system("clear"); menu();
+    }
 
-    } while (number >= 1 && number <= 3);
 }
 
 void dungeon() {
