@@ -43,28 +43,34 @@ string dungeonLevel;
 
 
 void showInfo() {
+
+    // update variable
+    playerLv = (playerSpentExp * 0.2 + playerExp) / 50; // player level
+
+    // player level rewards bonus
+    if (playerLv >= 5 && playerLv < 10)
+        bonusATK = 1;
+    else if (playerLv >= 10 && playerLv < 15)
+        bonusATK = 2;
+    else if (playerLv >= 15 && playerLv < 20)
+        bonusATK = 4;
+    else if (playerLv >= 20)
+        bonusATK = 6;
+    else
+        bonusATK = 0;
+
     cout << left << BRIGHT_GREEN << setw(11) << playerName << RESET_COLOR;
     cout << " Lv. " << BRIGHT_CYAN << setw(6) << playerLv << RESET_COLOR;
     cout << " EXP " << BRIGHT_YELLOW << setw(6) << playerExp << RESET_COLOR;
     cout << right; // default
+    cout << endl << endl;
 }
 
 void menu() {
     int number = 0;
-    playerLv = (playerExp + playerSpentExp) / 50;
-
-    if (playerLv >= 5)
-        bonusATK = 1;
-    else if (playerLv >= 10)
-        bonusATK = 2;
-    else if (playerLv >= 15)
-        bonusATK = 4;
-    else if (playerLv >= 20)
-        bonusATK = 6;
 
     showInfo();
 
-    cout << endl << endl;
     cout << "-----       Main Menu      -----" << endl;
     cout << "1) Player" << endl;
     cout << "2) Dungeon" << endl;
@@ -78,17 +84,14 @@ void menu() {
     default: system("clear"); menu();
     }
 
-
-
 }
 
 void playerMenu() {
+
     int number = 0;
-    playerLv = (playerSpentExp * 0.2 + playerExp) / 50;
 
     showInfo();
 
-    cout << endl << endl;
     cout << "-----      Player Menu     -----" << endl;
     cout << "1) Weapon Store" << endl;
     cout << "2) Level Up Rewards" << endl;
@@ -99,7 +102,9 @@ void playerMenu() {
     case 1: system("clear"); weaponStore(); break;
     case 2:
         system("clear");
-        cout << BRIGHT_CYAN << "Level Up Rewards" << RESET_COLOR << endl << endl;
+        showInfo();
+
+        cout << BRIGHT_CYAN << "-----    Level Up Rewards   -----" << RESET_COLOR << endl << endl;
         cout << "Level      Rewards" << endl;
 
 
@@ -125,6 +130,7 @@ void playerMenu() {
         cin.ignore();
 
         system("clear");
+        playerMenu();
 
         break;
     case 3: system("clear"); menu(); break;
@@ -140,7 +146,6 @@ void weaponStore() {
 
     showInfo();
 
-    cout << endl << endl;
     cout << "----- Dungeon Weapon Store -----" << endl;
 
     cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    (Notes)" << RESET_COLOR;
@@ -161,33 +166,17 @@ void weaponStore() {
 
     cout << endl;
 
-    cout << "1) Weapon Power Up (Cost 50EXP)" << endl;
-    cout << "2) Get a Wooden Sword" << endl;
-    cout << "3) Get a Silver Sword" << endl;
-    cout << "4) Get a Golden Sword" << endl;
-    cout << "5) Exit To Menu" << endl;
+    cout << "1) Get a Wooden Sword" << endl;
+    cout << "2) Get a Silver Sword" << endl;
+    cout << "3) Get a Golden Sword" << endl;
+    cout << "4) Weapon Power Up by Lv.1 (Cost  50 EXP)" << endl;
+    cout << "5) Weapon Power Up by Lv.5 (Cost 250 EXP)" << endl;
+    cout << "6) Exit To Menu" << endl;
 
     cin >> number;
     switch (number) {
-    case 1:
-        system("clear");
-        if (playerExp >= 50 && playerWeaponType != "None") {
-            playerExp -= 50;
-            playerSpentExp += 50;
-            playerWeaponLevel += 1;
-            cout << "Power Up!" << endl << endl;
-        }
-        else if (playerWeaponType == "None") {
-            cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
-            weaponStore();
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
-        }
-        menu(); break;
 
-    case 2:
+    case 1:
         system("clear");
         if (playerExp >= 300) {
             playerExp -= 300;
@@ -201,7 +190,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 3:
+    case 2:
         system("clear");
         if (playerExp >= 550) {
             playerExp -= 550;
@@ -215,7 +204,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 4:
+    case 3:
         system("clear");
         if (playerExp >= 800) {
             playerExp -= 800;
@@ -229,7 +218,43 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 5: system("clear"); menu(); break;
+    case 4:
+        system("clear");
+        if (playerExp >= 50 && playerWeaponType != "None") {
+            playerExp -= 50;
+            playerSpentExp += 50;
+            playerWeaponLevel += 1;
+            cout << playerWeaponType << " Power Up by Lv.1!" << endl << endl;
+        }
+        else if (playerWeaponType == "None") {
+            cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
+            weaponStore();
+        }
+        else {
+            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
+            weaponStore();
+        }
+        menu(); break;
+
+    case 5:
+        system("clear");
+        if (playerExp >= 250 && playerWeaponType != "None") {
+            playerExp -= 250;
+            playerSpentExp += 250;
+            playerWeaponLevel += 5;
+            cout << playerWeaponType << " Power Up by Lv.5!" << endl << endl;
+        }
+        else if (playerWeaponType == "None") {
+            cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
+            weaponStore();
+        }
+        else {
+            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
+            weaponStore();
+        }
+        menu(); break;
+
+    case 6: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
     }
 }
@@ -240,7 +265,6 @@ void dungeonMenu() {
 
     showInfo();
 
-    cout << endl << endl;
     cout << "-----     Dungeon Menu     -----" << endl;
 
     cout << "1) ENTER Dungeon  [ Easy ]" << endl;
