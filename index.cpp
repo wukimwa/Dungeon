@@ -128,7 +128,7 @@ void playerMenu() {
 
         break;
     case 3: system("clear"); menu(); break;
-    default: system("clear"); menu();
+    default: system("clear"); playerMenu();
     }
 
 }
@@ -230,7 +230,7 @@ void weaponStore() {
         menu(); break;
 
     case 5: system("clear"); menu(); break;
-    default: system("clear"); menu();
+    default: system("clear"); weaponStore();
     }
 }
 
@@ -276,7 +276,7 @@ void dungeonMenu() {
         }
         break;
     case 5: system("clear"); menu(); break;
-    default: system("clear"); menu();
+    default: system("clear"); dungeonMenu();
     }
 
 }
