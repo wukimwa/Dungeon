@@ -373,8 +373,8 @@ void dungeon() {
 void dungeonReward(int rewardEXP) {
     int number;
 
-    cout << endl << BRIGHT_YELLOW << "Dungeon Completed" << RESET_COLOR << endl;
-    cout << endl << "Rewards: " << rewardEXP << "EXP" << endl << endl;
+    cout << endl << BRIGHT_CYAN << "Dungeon Completed" << RESET_COLOR << endl;
+    cout << endl << "Rewards: " << BRIGHT_YELLOW << rewardEXP << RESET_COLOR << " EXP" << endl << endl;
     playerExp += rewardEXP;
 
     cout << "1) Exit To Player Menu" << endl;
