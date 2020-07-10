@@ -6,11 +6,11 @@ using namespace std;
 
 // function header
 void menu();
-void player();
 void dungeon();
 void showInfo();
-void weaponStore();
+void playerMenu();
 void dungeonMenu();
+void weaponStore();
 void dungeonReward(int rewardEXP);
 
 
@@ -74,7 +74,7 @@ void menu() {
         cout << endl;
 
         switch (number) {
-        case 1: system("clear"); player(); break;
+        case 1: system("clear"); playerMenu(); break;
         case 2: system("clear"); dungeonMenu(); break;
         case 3: system("clear"); break;
         default:
@@ -86,7 +86,7 @@ void menu() {
 
 }
 
-void player() {
+void playerMenu() {
     int number = 0;
     playerLv = (playerSpentExp * 0.2 + playerExp) / 50;
 
@@ -380,16 +380,22 @@ void dungeon() {
 }
 
 void dungeonReward(int rewardEXP) {
+    int number;
+
     cout << endl << BRIGHT_YELLOW << "Dungeon Completed" << RESET_COLOR << endl;
     cout << endl << "Rewards: " << rewardEXP << "EXP" << endl << endl;
     playerExp += rewardEXP;
 
-    cin.ignore();
-    cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
-    cin.ignore();
+    cout << "1) Exit To Player Menu" << endl;
+    cout << "2) Exit To Dungeon Menu" << endl;
 
-    system("clear");
-    menu();
+    cin >> number;
+    switch (number) {
+    case 1: system("clear"); playerMenu(); break;
+    case 2: system("clear"); dungeonMenu(); break;
+    default: system("clear"); menu();
+    }
+
 }
 
 int main() {
