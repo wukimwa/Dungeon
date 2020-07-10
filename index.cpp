@@ -324,37 +324,51 @@ void dungeon() {
     // level up rewards deduct monster health
     monsterHealth -= bonusATK;
 
+    int countATK = 0;
+    bool startATK = true;
 
     do {
 
-        if (monsterHealth == monsterMaxHealth) {
+        if (startATK == true) {
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 100% left..." << RESET_COLOR << endl;
-            cout << BRIGHT_YELLOW << "Press ENTER to attack the monster." << RESET_COLOR << endl;
+            startATK = false;
+            cout << endl << endl << BRIGHT_GREEN << "Attacking the monster..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.8 * monsterMaxHealth)) {
+            countATK = 0;
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 80% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_CYAN << "Monster Health - 80% left..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.6 * monsterMaxHealth)) {
+            countATK = 0;
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 60% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_CYAN << "Monster Health - 60% left..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.4 * monsterMaxHealth)) {
+            countATK = 0;
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 40% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_CYAN << "Monster Health - 40% left..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
         else if (monsterHealth == (0.2 * monsterMaxHealth)) {
+            countATK = 0;
             system("clear");
-            cout << endl << endl << BRIGHT_YELLOW << "Monster Health - 20% left..." << RESET_COLOR << endl;
+            cout << endl << endl << BRIGHT_CYAN << "Monster Health - 20% left..." << RESET_COLOR << endl;
+            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
+        }
+        else if (countATK >= 10){
+            countATK = 0;
+            system("clear");
+            cout << endl << endl << BRIGHT_GREEN << "Attacking the monster..." << RESET_COLOR << endl;
             cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
         }
 
         cin.ignore();
 
+        countATK++;
         monsterHealth--;
     } while (monsterHealth > 0);
 
