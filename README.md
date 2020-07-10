@@ -12,11 +12,11 @@ https://github.com/wukimwa/game/projects/1
 
 ## Version History
 
-Version History AFTER v1.3.0
-https://github.com/wukimwa/game/releases
+#### Version History AFTER v1.3.0
+>> https://github.com/wukimwa/game/releases
 
-Version History v1.0.0 to v1.3.0
-https://github.com/wukimwa/game/wiki/Version-History
+#### Version History v1.0.0 to v1.3.0
+>> https://github.com/wukimwa/game/wiki/Version-History
 
 
 
