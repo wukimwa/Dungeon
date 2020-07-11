@@ -16,15 +16,11 @@ void dungeonReward(int rewardEXP);
 
 // global variable
 const string RESET_COLOR = "\033[0m";
+const string GREEN = "\033[32m";
 const string BRIGHT_RED = "\033[91m";
 const string BRIGHT_GREEN = "\033[92m";
 const string BRIGHT_YELLOW = "\033[93m";
 const string BRIGHT_CYAN = "\033[96m";
-
-// const weapon value
-const int woodenswordAttackValue = 25;
-const int silverswordAttackValue = 45;
-const int goldenswordAttackValue = 65;
 
 // player variable
 string playerName;
@@ -32,7 +28,8 @@ int playerExp = 0;
 int playerSpentExp = 0;
 
 int playerLv;
-int bonusATK; // level up rewards variable
+int bonusATK = 0; // level up rewards variable
+int weaponATK = 0, weaponMHP = 0; // weapon variable
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -45,7 +42,7 @@ string dungeonLevel;
 void showInfo() {
 
     // update variable
-    playerLv = (playerSpentExp * 0.2 + playerExp) / 50; // player level
+    playerLv = (playerSpentExp * 0.2) / 50; // player level
 
     // player level rewards bonus
     if (playerLv >= 5 && playerLv < 10)
@@ -56,8 +53,33 @@ void showInfo() {
         bonusATK = 4;
     else if (playerLv >= 20)
         bonusATK = 6;
-    else
-        bonusATK = 0;
+
+    // player level rewards bonus
+    if (playerWeaponType == "Wooden Sword"){
+        weaponATK = 3;
+        if (playerWeaponLevel >= 5){
+            weaponATK += 1;
+        }
+    }
+    else if (playerWeaponType == "Silver Sword"){
+        weaponATK = 5;
+        if (playerWeaponLevel >= 8){
+            weaponATK += 2;
+        }
+    }
+    else if (playerWeaponType == "Golden Sword"){
+        weaponATK = 8;
+        weaponMHP = 1;
+        if (playerWeaponLevel >= 12){
+            weaponATK += 3;
+            weaponMHP += 2;
+        }
+    }
+    else if (playerWeaponType == "Mythic Sword"){
+        weaponATK = 12;
+        weaponMHP = 6;
+    }
+
 
     cout << left << BRIGHT_GREEN << setw(11) << playerName << RESET_COLOR;
     cout << " Lv. " << BRIGHT_CYAN << setw(6) << playerLv << RESET_COLOR;
@@ -70,6 +92,8 @@ void menu() {
     int number = 0;
 
     showInfo();
+
+    cout << GREEN << "Tips: Every EXP you have spent helps you to get level up." << RESET_COLOR << endl << endl;
 
     cout << "-----       Main Menu      -----" << endl;
     cout << "1) Player" << endl;
@@ -142,20 +166,41 @@ void playerMenu() {
 
 void weaponStore() {
     int number = 0;
-    playerLv = (playerExp + playerSpentExp) / 50;
 
     showInfo();
 
     cout << "----- Dungeon Weapon Store -----" << endl;
+    cout << "ATK: Player's Attack Value; MHP: Monster Max Health Deduction" << endl << endl;
 
-    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    (Notes)" << RESET_COLOR;
+    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    (Properties)" << RESET_COLOR;
     cout << endl;
     cout << "300 EXP    Wooden Sword   ";
-    cout << " (-" << woodenswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "550 EXP    Silver Sword   ";
-    cout << " (-" << silverswordAttackValue << " Monster MAX HP)" << endl;
-    cout << "800 EXP    Golden Sword   ";
-    cout << " (-" << goldenswordAttackValue << " Monster MAX HP)" << endl;
+    cout << " (  3 ATK )" << endl;
+    cout << "                   Lv.5   ";
+    cout << " ( +1 ATK )" << endl;
+    cout << "                   Lv.8   ";
+    cout << " ( Upgrade to Lv.1 Silver Sword )" << endl;
+    cout << endl;
+
+    cout << "650 EXP    Silver Sword   ";
+    cout << " (  5 ATK )" << endl;
+    cout << "                   Lv.8   ";
+    cout << " ( +2 ATK )" << endl;
+    cout << "                  Lv.12   ";
+    cout << " ( Upgrade to Lv.1 Golden Sword )" << endl;
+    cout << endl;
+
+    cout << "N/A        Golden Sword   ";
+    cout << " (  8 ATK;  1 MHP )" << endl;
+    cout << "                  Lv.12   ";
+    cout << " ( +3 ATK; +2 MHP )" << endl;
+    cout << "                  Lv.20   ";
+    cout << " ( Upgrade to Lv.1 Mythic Sword )" << endl;
+    cout << endl;
+
+    cout << "N/A        Mythic Sword   ";
+    cout << " ( 12 ATK; 6 MHP )" << endl;
+    cout << endl;
 
     // player weapon
     cout << endl;
@@ -168,31 +213,29 @@ void weaponStore() {
 
     cout << "1) Get a Wooden Sword" << endl;
     cout << "2) Get a Silver Sword" << endl;
-    cout << "3) Get a Golden Sword" << endl;
-    cout << "4) Weapon Power Up by Lv.1 (Cost  50 EXP)" << endl;
-    cout << "5) Weapon Power Up by Lv.5 (Cost 250 EXP)" << endl;
-    cout << "6) Exit To Menu" << endl;
+    cout << "3) Weapon Power Up by Lv.1 (Cost 50 EXP)" << endl;
+    cout << "4) Exit To Menu" << endl;
 
     cin >> number;
     switch (number) {
 
     case 1:
         system("clear");
-        if (playerExp >= 300) {
+        if (playerExp >= 300 && playerWeaponType == "None") {
             playerExp -= 300;
             playerSpentExp += 300;
             playerWeaponType = "Wooden Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
         }
         else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
+            cout << BRIGHT_RED << "You do not have enough experiences / You already got a weapon." << RESET_COLOR << endl << endl;
             weaponStore();
         }
         menu(); break;
 
     case 2:
         system("clear");
-        if (playerExp >= 550) {
+        if (playerExp >= 550 && playerWeaponType == "None") {
             playerExp -= 550;
             playerSpentExp += 550;
             playerWeaponType = "Silver Sword";
@@ -206,25 +249,31 @@ void weaponStore() {
 
     case 3:
         system("clear");
-        if (playerExp >= 800) {
-            playerExp -= 800;
-            playerSpentExp += 800;
-            playerWeaponType = "Golden Sword";
-            cout << playerWeaponType << " purchased" << endl << endl;
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
-        }
-        menu(); break;
-
-    case 4:
-        system("clear");
         if (playerExp >= 50 && playerWeaponType != "None") {
             playerExp -= 50;
             playerSpentExp += 50;
             playerWeaponLevel += 1;
-            cout << playerWeaponType << " Power Up by Lv.1!" << endl << endl;
+            
+            // weapon upgrade
+            if(playerWeaponLevel < 8){
+                cout << playerWeaponType << " Power Up by Lv.1!" << endl << endl;
+            }
+            else if(playerWeaponLevel >= 8 && playerWeaponType == "Wooden Sword"){
+                cout << playerWeaponType << " upgraded to Lv.1 Silver Sword!" << endl << endl;
+                playerWeaponLevel = 1;
+                playerWeaponType = "Silver Sword";
+            }
+            else if(playerWeaponLevel >= 12 && playerWeaponType == "Silver Sword"){
+                cout << playerWeaponType << " upgraded to Lv.1 Golden Sword!" << endl << endl;
+                playerWeaponLevel = 1;
+                playerWeaponType = "Golden Sword";
+            }
+            else if(playerWeaponLevel >= 20 && playerWeaponType == "Golden Sword"){
+                cout << playerWeaponType << " upgraded to Lv.1 Mythic Sword!" << endl << endl;
+                playerWeaponLevel = 1;
+                playerWeaponType = "Mythic Sword";
+            }
+
         }
         else if (playerWeaponType == "None") {
             cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
@@ -236,25 +285,7 @@ void weaponStore() {
         }
         menu(); break;
 
-    case 5:
-        system("clear");
-        if (playerExp >= 250 && playerWeaponType != "None") {
-            playerExp -= 250;
-            playerSpentExp += 250;
-            playerWeaponLevel += 5;
-            cout << playerWeaponType << " Power Up by Lv.5!" << endl << endl;
-        }
-        else if (playerWeaponType == "None") {
-            cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
-            weaponStore();
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
-        }
-        menu(); break;
-
-    case 6: system("clear"); menu(); break;
+    case 4: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
     }
 }
@@ -308,36 +339,27 @@ void dungeonMenu() {
 void dungeon() {
 
     // dungeon monster health
-
     int monsterHealth, monsterMaxHealth;
 
-    if (dungeonLevel == "Easy") {
-        monsterMaxHealth = 50;
-    }
-    else if (dungeonLevel == "Normal") {
-        monsterMaxHealth = 200;
-    }
-    else if (dungeonLevel == "Hard") {
-        monsterMaxHealth = 500;
-    }
-    else if (dungeonLevel == "Mythic") {
-        monsterMaxHealth = 2000;
-    }
+    if (dungeonLevel == "Easy")
+        monsterMaxHealth = 5000;
+    else if (dungeonLevel == "Normal")
+        monsterMaxHealth = 20000;
+    else if (dungeonLevel == "Hard")
+        monsterMaxHealth = 50000;
+    else if (dungeonLevel == "Mythic")
+        monsterMaxHealth = 200000;
+
     monsterHealth = monsterMaxHealth;
 
-    // weapon deduct monster health
-    if (playerWeaponType == "Wooden Sword") {
-        monsterHealth -= woodenswordAttackValue;
-    }
-    else if (playerWeaponType == "Silver Sword") {
-        monsterHealth -= goldenswordAttackValue;
-    }
-    else if (playerWeaponType == "Golden Sword") {
-        monsterHealth -= goldenswordAttackValue;
-    }
 
-    // level up rewards deduct monster health
-    monsterHealth -= bonusATK;
+
+    // player information
+    int playerATK = 100; // initial attack value
+    playerATK += bonusATK; // level up rewards deduct monster health
+    playerATK += weaponATK; // weapon increase player's attack
+    monsterHealth -= weaponMHP; // weapon deduct monster health
+
 
     int countATK = 0;
     bool startATK = true;
@@ -384,12 +406,13 @@ void dungeon() {
         cin.ignore();
 
         countATK++;
-        monsterHealth--;
+        monsterHealth -= playerATK;
+
     } while (monsterHealth > 0);
 
     if (monsterHealth <= 0) {
         system("clear");
-        dungeonReward(monsterMaxHealth / 5);
+        dungeonReward(monsterMaxHealth / 500);
     }
 
 }
