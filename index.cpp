@@ -227,8 +227,12 @@ void weaponStore() {
             playerWeaponType = "Wooden Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
         }
+        else if (playerWeaponType != "None"){
+            cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
+            weaponStore();
+        }
         else {
-            cout << BRIGHT_RED << "You do not have enough experiences / You already got a weapon." << RESET_COLOR << endl << endl;
+            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
             weaponStore();
         }
         menu(); break;
@@ -240,6 +244,10 @@ void weaponStore() {
             playerSpentExp += 550;
             playerWeaponType = "Silver Sword";
             cout << playerWeaponType << " purchased" << endl << endl;
+        }
+        else if (playerWeaponType != "None"){
+            cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
+            weaponStore();
         }
         else {
             cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
