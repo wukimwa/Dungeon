@@ -174,46 +174,68 @@ void weaponStore() {
 
     cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "    (Properties)" << RESET_COLOR;
     cout << endl;
+
+    // wooden sword
+    (playerWeaponType == "Wooden Sword") ? cout << BRIGHT_YELLOW : cout;
     cout << "300 EXP    Wooden Sword   ";
     cout << " (  3 ATK )" << endl;
+
+    (playerWeaponLevel < 5) ? cout << RESET_COLOR : cout;
     cout << "                   Lv.5   ";
     cout << " ( +1 ATK )" << endl;
+
+    (playerWeaponLevel < 8) ? cout << RESET_COLOR : cout;
     cout << "                   Lv.8   ";
     cout << " ( Upgrade to Lv.1 Silver Sword )" << endl;
     cout << endl;
 
+
+    // silver sword
+    (playerWeaponType == "Silver Sword") ? cout << BRIGHT_YELLOW : cout;
     cout << "650 EXP    Silver Sword   ";
     cout << " (  5 ATK )" << endl;
+
+    (playerWeaponLevel < 8) ? cout << RESET_COLOR : cout;
     cout << "                   Lv.8   ";
     cout << " ( +2 ATK )" << endl;
+
+    (playerWeaponLevel < 12) ? cout << RESET_COLOR : cout;
     cout << "                  Lv.12   ";
     cout << " ( Upgrade to Lv.1 Golden Sword )" << endl;
     cout << endl;
 
+
+    // golden sword
+    (playerWeaponType == "Golden Sword") ? cout << BRIGHT_YELLOW : cout;
     cout << "N/A        Golden Sword   ";
     cout << " (  8 ATK;  1 MHP )" << endl;
+
+    (playerWeaponLevel < 12) ? cout << RESET_COLOR : cout;
     cout << "                  Lv.12   ";
     cout << " ( +3 ATK; +2 MHP )" << endl;
+
+    (playerWeaponLevel < 20) ? cout << RESET_COLOR : cout;
     cout << "                  Lv.20   ";
     cout << " ( Upgrade to Lv.1 Mythic Sword )" << endl;
     cout << endl;
 
+
+    // mythic sword
+    (playerWeaponType == "Mythic Sword") ? cout << BRIGHT_YELLOW : cout;
     cout << "N/A        Mythic Sword   ";
     cout << " ( 12 ATK; 6 MHP )" << endl;
     cout << endl;
 
     // player weapon
-    cout << endl;
-    cout << BRIGHT_YELLOW;
-    cout << "Current    " << setw(12) << playerWeaponType;
-    cout << "    (Lv." << playerWeaponLevel << ")" << endl;
+    cout << BRIGHT_GREEN;
+    cout << "50 EXP     " << setw(12) << playerWeaponType;
+    cout << "    (Power Up from Lv." << playerWeaponLevel << " to Lv." << (playerWeaponLevel + 1) << ")" << endl << endl;
     cout << RESET_COLOR;
 
-    cout << endl;
 
     cout << "1) Get a Wooden Sword" << endl;
     cout << "2) Get a Silver Sword" << endl;
-    cout << "3) Weapon Power Up by Lv.1 (Cost 50 EXP)" << endl;
+    cout << "3) Weapon Power Up" << endl;
     cout << "4) Exit To Menu" << endl;
 
     cin >> number;
@@ -229,13 +251,11 @@ void weaponStore() {
         }
         else if (playerWeaponType != "None"){
             cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
         else {
             cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
-        menu(); break;
+        weaponStore(); break;
 
     case 2:
         system("clear");
@@ -247,13 +267,11 @@ void weaponStore() {
         }
         else if (playerWeaponType != "None"){
             cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
         else {
             cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
-        menu(); break;
+        weaponStore(); break;
 
     case 3:
         system("clear");
@@ -285,13 +303,11 @@ void weaponStore() {
         }
         else if (playerWeaponType == "None") {
             cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
         else {
             cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-            weaponStore();
         }
-        menu(); break;
+        weaponStore(); break;
 
     case 4: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
