@@ -15,6 +15,7 @@ void levelReward();
 void dungeonMenu();
 void weaponStore();
 void dungeonReward(int rewardEXP);
+void purchaseWeapon(string w, int p);
 
 // global variable
 const string RESET_COLOR = "\033[0m";
@@ -333,53 +334,9 @@ void weaponStore() {
     cin >> number;
     switch (number) {
 
-    case 1:
-        system("clear");
-        if (playerExp >= 300 && playerWeaponType == "None") {
-            playerExp -= 300;
-            playerSpentExp += 300;
-            playerWeaponType = "WoodenSword";
-            cout << playerWeaponType << " purchased" << endl << endl;
-        }
-        else if (playerWeaponType != "None"){
-            cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-        }
-        weaponStore(); break;
-
-    case 2:
-        system("clear");
-        if (playerExp >= 650 && playerWeaponType == "None") {
-            playerExp -= 650;
-            playerSpentExp += 650;
-            playerWeaponType = "SilverSword";
-            cout << playerWeaponType << " purchased" << endl << endl;
-        }
-        else if (playerWeaponType != "None"){
-            cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-        }
-        weaponStore(); break;
-
-    case 3:
-        system("clear");
-        if (playerExp >= 850 && playerWeaponType == "None") {
-            playerExp -= 850;
-            playerSpentExp += 850;
-            playerWeaponType = "StarSword";
-            cout << playerWeaponType << " purchased" << endl << endl;
-        }
-        else if (playerWeaponType != "None"){
-            cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-        }
-        weaponStore(); break;
+    case 1: system("clear"); purchaseWeapon("WoodenSword", 300); break;
+    case 2: system("clear"); purchaseWeapon("SilverSword", 650); break;
+    case 3: system("clear"); purchaseWeapon("StarSword", 850); break;
 
     case 4:
         system("clear");
@@ -420,6 +377,22 @@ void weaponStore() {
     case 5: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
     }
+}
+
+void purchaseWeapon(string w, int p) {
+    if(playerExp<p){
+        cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
+    }
+    else if(playerWeaponType!="None"){
+        cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
+    }
+    else{
+        playerExp -= p;
+        playerSpentExp += p;
+        playerWeaponType = w;
+        cout << playerWeaponType << " purchased" << endl << endl;
+    }
+    weaponStore();
 }
 
 void dungeonMenu() {
