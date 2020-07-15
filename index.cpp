@@ -337,42 +337,7 @@ void weaponStore() {
     case 1: system("clear"); purchaseWeapon("WoodenSword", 300); break;
     case 2: system("clear"); purchaseWeapon("SilverSword", 650); break;
     case 3: system("clear"); purchaseWeapon("StarSword", 850); break;
-
-    case 4:
-        system("clear");
-        if (playerExp >= 50 && playerWeaponType != "None") {
-            playerExp -= 50;
-            playerSpentExp += 50;
-            playerWeaponLevel += 1;
-            
-            // weapon upgrade
-            if(playerWeaponLevel < 8){
-                cout << playerWeaponType << " Power Up by Lv.1!" << endl << endl;
-            }
-            else if(playerWeaponLevel >= 8 && playerWeaponType == "WoodenSword"){
-                cout << playerWeaponType << " upgraded to Lv.1 SilverSword!" << endl << endl;
-                playerWeaponLevel = 1;
-                playerWeaponType = "SilverSword";
-            }
-            else if(playerWeaponLevel >= 12 && playerWeaponType == "SilverSword"){
-                cout << playerWeaponType << " upgraded to Lv.1 GoldenSword!" << endl << endl;
-                playerWeaponLevel = 1;
-                playerWeaponType = "GoldenSword";
-            }
-            else if(playerWeaponLevel >= 20 && playerWeaponType == "GoldenSword"){
-                cout << playerWeaponType << " upgraded to Lv.1 MythicSword!" << endl << endl;
-                playerWeaponLevel = 1;
-                playerWeaponType = "MythicSword";
-            }
-
-        }
-        else if (playerWeaponType == "None") {
-            cout << BRIGHT_RED << "You do not have any weapon." << RESET_COLOR << endl << endl;
-        }
-        else {
-            cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
-        }
-        weaponStore(); break;
+    case 4: system("clear"); purchaseWeapon("PowerUp", 50); break;
 
     case 5: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
@@ -380,12 +345,42 @@ void weaponStore() {
 }
 
 void purchaseWeapon(string w, int p) {
+
     if(playerExp<p){
         cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
     }
+
+    else if(w=="PowerUp"){
+        playerExp -= p;
+        playerSpentExp += p;
+        playerWeaponLevel += 1;
+        
+        // weapon upgrade
+        if(playerWeaponLevel < 8){
+            cout << playerWeaponType << " Power Up by Lv.1!" << endl << endl;
+        }
+        else if(playerWeaponLevel >= 8 && playerWeaponType == "WoodenSword"){
+            cout << playerWeaponType << " upgraded to Lv.1 SilverSword!" << endl << endl;
+            playerWeaponLevel = 1;
+            playerWeaponType = "SilverSword";
+        }
+        else if(playerWeaponLevel >= 12 && playerWeaponType == "SilverSword"){
+            cout << playerWeaponType << " upgraded to Lv.1 GoldenSword!" << endl << endl;
+            playerWeaponLevel = 1;
+            playerWeaponType = "GoldenSword";
+        }
+        else if(playerWeaponLevel >= 20 && playerWeaponType == "GoldenSword"){
+            cout << playerWeaponType << " upgraded to Lv.1 MythicSword!" << endl << endl;
+            playerWeaponLevel = 1;
+            playerWeaponType = "MythicSword";
+        }
+
+    }
+
     else if(playerWeaponType!="None"){
         cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
     }
+
     else{
         playerExp -= p;
         playerSpentExp += p;
