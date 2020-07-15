@@ -206,9 +206,9 @@ void weaponStore() {
     cout << "ATK: Player's Attack Value;" << endl;
     cout << "PMP: Player's Energy Point;" << endl;
     cout << "MHP: Monster Max Health Deduction;" << endl;
+    cout << endl << endl;
 
     cout << left;
-    
     const int PRICE_WIDTH = 12;
     const int WEAPON_WIDTH = 16;
     const int PROPERTIES_WIDTH = 40;
@@ -327,7 +327,6 @@ void weaponStore() {
     case 2: system("clear"); purchaseWeapon("SilverSword", 650); break;
     case 3: system("clear"); purchaseWeapon("StarSword", 850); break;
     case 4: system("clear"); purchaseWeapon("PowerUp", 50); break;
-
     case 5: system("clear"); menu(); break;
     default: system("clear"); weaponStore();
     }
@@ -337,6 +336,9 @@ void purchaseWeapon(string w, int p) {
 
     if (playerExp < p){
         cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
+    }
+    else if (w == "PowerUp" && playerWeaponType == "None"){
+        cout << BRIGHT_RED << "You do not have a weapon." << RESET_COLOR << endl << endl;
     }
 
     else if (w == "PowerUp"){
@@ -366,7 +368,7 @@ void purchaseWeapon(string w, int p) {
 
     }
 
-    else if(playerWeaponType!="None"){
+    else if(playerWeaponType != "None"){
         cout << BRIGHT_RED << "You already got a weapon." << RESET_COLOR << endl << endl;
     }
 
@@ -389,28 +391,8 @@ void dungeonMenu() {
     switch (number) {
     case 1: system("clear"); dungeonLevel = "Easy"; dungeon(); break;
     case 2: system("clear"); dungeonLevel = "Normal"; dungeon(); break;
-    case 3:
-        system("clear");
-        if (playerLv >= 5) {
-            dungeonLevel = "Hard";
-            dungeon();
-        }
-        else {
-            cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
-            dungeonMenu();
-        }
-        break;
-    case 4:
-        system("clear");
-        if (playerLv >= 15) {
-            dungeonLevel = "Mythic";
-            dungeon();
-        }
-        else {
-            cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
-            dungeonMenu();
-        }
-        break;
+    case 3: system("clear"); dungeonLevel = "Hard"; dungeon(); break;
+    case 4: system("clear"); dungeonLevel = "Mythic"; dungeon(); break;
     case 5: system("clear"); menu(); break;
     default: system("clear"); dungeonMenu();
     }
@@ -418,6 +400,17 @@ void dungeonMenu() {
 }
 
 void dungeon() {
+
+    // check player level
+    if (playerLv < 5 && dungeonLevel == "Hard") {
+        cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
+        dungeonMenu();
+    }
+    else if (playerLv < 15 && dungeonLevel == "Mythic") {
+        cout << BRIGHT_RED << "The dungeon is now locked." << RESET_COLOR << endl << endl;
+        dungeonMenu();
+    }
+
 
     // dungeon monster health
     int monsterHealth, monsterMaxHealth;
@@ -487,7 +480,6 @@ void dungeon() {
                 cout << endl << endl << BRIGHT_GREEN << "Attacking the monster..." << RESET_COLOR << endl;
 
             cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
-
             energyATK--;
 
         }
