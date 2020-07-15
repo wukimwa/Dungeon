@@ -109,7 +109,7 @@ void menu() {
     cout << "-----       Main Menu      -----" << endl;
     cout << "1) Player" << endl;
     cout << "2) Dungeon" << endl;
-    cout << "3) Save Current Game Data" << endl;
+    cout << "3) Save Game" << endl;
     
     cin >> number;
     switch (number) {
@@ -439,9 +439,8 @@ void dungeon() {
     monsterHealth = monsterMaxHealth;
 
 
-    int countATK = 0;
+    int countATK = 8;
     int energyATK = 20;
-    bool startATK = true;
 
 
     // player information
@@ -454,34 +453,7 @@ void dungeon() {
 
     do {
 
-        if (startATK == true) {
-            system("clear");
-            startATK = false;
-
-            // energy
-            cout << "Energy: ";
-            if (energyATK>20){
-                for(int i = 20; i > 0; i--){
-                    cout << "*";
-                }
-                for(int i = (energyATK - 20); i > 0; i--){
-                    cout << BRIGHT_YELLOW << "*" << RESET_COLOR;
-                }
-            }
-            else{
-                for(int i = energyATK; i > 0; i--){
-                    cout << "*";
-                }
-            }
-
-            cout << endl << endl << BRIGHT_GREEN << "Attacking the monster..." << RESET_COLOR << endl;
-            cout << BRIGHT_YELLOW << "Continue attack the monster by pressing ENTER." << RESET_COLOR << endl;
-            
-            energyATK--;
-
-        }
-
-        else if (energyATK == 0){
+        if (energyATK == 0){
             system("clear");
             cout << BRIGHT_RED << "Energy is used up. Dungeon Quest Failed..." << RESET_COLOR << endl << endl;
             dungeonMenu();
@@ -642,7 +614,7 @@ int main() {
         totalNum = 0;
 
         system("clear");
-        cout << BRIGHT_RED << "Login successful." << RESET_COLOR;
+        cout << BRIGHT_YELLOW << "Login successful." << RESET_COLOR;
         cout << endl << endl;
         menu();
     }
@@ -651,7 +623,7 @@ int main() {
     else if (playerLv == 0 && playerExp == 0 && playerSpentExp == 0 && playerWeaponType == "None" && playerWeaponLevel == 0){
         playerName = login;
         system("clear");
-        cout << BRIGHT_RED << "Login successful. You have received EXP 500 as a new player gift." << RESET_COLOR;
+        cout << BRIGHT_YELLOW << "Login successful. You have received EXP 500 as a new player gift." << RESET_COLOR;
         cout << endl << endl;
         playerExp += 500;
         menu();
