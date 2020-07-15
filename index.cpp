@@ -15,7 +15,6 @@ void dungeonMenu();
 void weaponStore();
 void dungeonReward(int rewardEXP);
 
-
 // global variable
 const string RESET_COLOR = "\033[0m";
 const string BRIGHT_RED = "\033[91m";
@@ -201,82 +200,112 @@ void weaponStore() {
     cout << "----- Dungeon Weapon Store -----" << endl;
     cout << "ATK: Player's Attack Value; MHP: Monster Max Health Deduction" << endl << endl;
 
-    cout << BRIGHT_GREEN << "Price  " << BRIGHT_CYAN << "    Weapon Type " << BRIGHT_YELLOW << "   (Properties)" << RESET_COLOR;
-    cout << endl << endl;
+    cout << left;
+    
+    const int PRICE_WIDTH = 12;
+    const int WEAPON_WIDTH = 16;
+    const int PROPERTIES_WIDTH = 40;
+
+    cout << BRIGHT_GREEN << setw(PRICE_WIDTH) << "Price";
+    cout << BRIGHT_CYAN << setw(WEAPON_WIDTH) << "Weapon Type ";
+    cout << BRIGHT_YELLOW << setw(PROPERTIES_WIDTH) << "(Properties)";
+    cout << RESET_COLOR << endl << endl;
 
     // WoodenSword
     (playerWeaponType == "WoodenSword") ? cout << BRIGHT_YELLOW : cout;
-    cout << "300 EXP    WoodenSword   ";
-    cout << " (  3 ATK )" << endl;
+    cout << setw(PRICE_WIDTH) << "300 EXP";
+    cout << setw(WEAPON_WIDTH) << "WoodenSword";
+    cout << setw(PROPERTIES_WIDTH) << "(  3 ATK )" << endl;
 
     (playerWeaponLevel < 5) ? cout << RESET_COLOR : cout;
-    cout << "                  Lv.5   ";
-    cout << " ( +1 ATK )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.5";
+    cout << setw(PROPERTIES_WIDTH) << "( +1 ATK )" << endl;
 
     (playerWeaponLevel < 8) ? cout << RESET_COLOR : cout;
-    cout << "                  Lv.8   ";
-    cout << " ( Upgrade to Lv.1 SilverSword )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.8";
+    cout << setw(PROPERTIES_WIDTH) << "( Upgrade to Lv.1 SilverSword )" << endl;
+
     cout << RESET_COLOR << endl;
 
 
     // SilverSword
     (playerWeaponType == "SilverSword") ? cout << BRIGHT_YELLOW : cout;
-    cout << "650 EXP    SilverSword   ";
-    cout << " (  5 ATK )" << endl;
+    cout << setw(PRICE_WIDTH) << "650 EXP";
+    cout << setw(WEAPON_WIDTH) << "SilverSword";
+    cout << setw(PROPERTIES_WIDTH) << "(  5 ATK )" << endl;
 
     (playerWeaponLevel < 8) ? cout << RESET_COLOR : cout;
-    cout << "                  Lv.8   ";
-    cout << " ( +2 ATK )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.8";
+    cout << setw(PROPERTIES_WIDTH) << "( +2 ATK )" << endl;
 
     (playerWeaponLevel < 12) ? cout << RESET_COLOR : cout;
-    cout << "                 Lv.12   ";
-    cout << " ( Upgrade to Lv.1 GoldenSword )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.12";
+    cout << setw(PROPERTIES_WIDTH) << "( Upgrade to Lv.1 GoldenSword )" << endl;
+
     cout << RESET_COLOR << endl;
 
 
     // StarSword
     (playerWeaponType == "StarSword") ? cout << BRIGHT_YELLOW : cout;
-    cout << "850 EXP      StarSword   ";
-    cout << " (  1 ATK;  1 MMP )" << endl;
+    cout << setw(PRICE_WIDTH) << "850 EXP";
+    cout << setw(WEAPON_WIDTH) << "StarSword";
+    cout << setw(PROPERTIES_WIDTH) << "(  1 ATK;  1 MMP )" << endl;
 
     (playerWeaponLevel < 15) ? cout << RESET_COLOR : cout;
-    cout << "                 Lv.15   ";
-    cout << " ( +2 ATK; +1 MMP )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.15";
+    cout << setw(PROPERTIES_WIDTH) << "( +2 ATK; +1 MMP )" << endl;
 
     (playerWeaponLevel < 25) ? cout << RESET_COLOR : cout;
-    cout << "                 Lv.25   ";
-    cout << " ( +3 ATK; +1 MMP )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.25";
+    cout << setw(PROPERTIES_WIDTH) << "( +3 ATK; +1 MMP )" << endl;
+
     cout << RESET_COLOR << endl;
 
 
     // GoldenSword
     (playerWeaponType == "GoldenSword") ? cout << BRIGHT_YELLOW : cout;
-    cout << "N/A        GoldenSword   ";
-    cout << " (  8 ATK;  10 MHP )" << endl;
+    cout << setw(PRICE_WIDTH) << "N/A";
+    cout << setw(WEAPON_WIDTH) << "GoldenSword";
+    cout << setw(PROPERTIES_WIDTH) << "(  8 ATK;  10 MHP )" << endl;
 
     (playerWeaponLevel < 12) ? cout << RESET_COLOR : cout;
-    cout << "                 Lv.12   ";
-    cout << " ( +3 ATK; +20 MHP )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.12";
+    cout << setw(PROPERTIES_WIDTH) << "( +3 ATK; +20 MHP )" << endl;
 
     (playerWeaponLevel < 20) ? cout << RESET_COLOR : cout;
-    cout << "                 Lv.20   ";
-    cout << " ( Upgrade to Lv.1 MythicSword )" << endl;
+    cout << setw(PRICE_WIDTH) << "";
+    cout << setw(WEAPON_WIDTH) << "Lv.20";
+    cout << setw(PROPERTIES_WIDTH) << "( Upgrade to Lv.1 MythicSword )" << endl;
+
     cout << RESET_COLOR << endl;
 
 
     // MythicSword
     (playerWeaponType == "MythicSword") ? cout << BRIGHT_YELLOW : cout;
-    cout << "N/A        MythicSword   ";
-    cout << " ( 12 ATK; 60 MHP )" << endl;
+    cout << setw(PRICE_WIDTH) << "N/A";
+    cout << setw(WEAPON_WIDTH) << "MythicSword";
+    cout << setw(PROPERTIES_WIDTH) << "( 12 ATK; 60 MHP )" << endl;
+
     cout << RESET_COLOR << endl;
 
 
     // player weapon
     cout << BRIGHT_GREEN;
-    cout << "50 EXP    " << setw(12) << playerWeaponType;
-    cout << "    (Power Up from Lv." << playerWeaponLevel << " to Lv." << (playerWeaponLevel + 1) << ")" << endl << endl;
-    cout << RESET_COLOR;
+    cout << setw(PRICE_WIDTH) << "50 EXP";
+    cout << setw(WEAPON_WIDTH) << playerWeaponType;
+    cout << setw(PROPERTIES_WIDTH) << "(Power up the weapon by Lv.1)" << endl;
 
+    cout << RESET_COLOR << endl;
+
+    cout << right; // default
+    cout << endl << endl;
 
     cout << "1) Get a WoodenSword" << endl;
     cout << "2) Get a SilverSword" << endl;
