@@ -11,6 +11,7 @@ void save();
 void dungeon();
 void showInfo();
 void playerMenu();
+void levelReward();
 void dungeonMenu();
 void weaponStore();
 void dungeonReward(int rewardEXP);
@@ -153,29 +154,51 @@ void playerMenu() {
     cin >> number;
     switch (number) {
     case 1: system("clear"); weaponStore(); break;
-    case 2:
-        system("clear");
+    case 2: system("clear"); levelReward(); break;
+
+    case 3: system("clear"); menu(); break;
+    default: system("clear"); playerMenu();
+    }
+
+}
+
+void levelReward() {
+
         showInfo();
 
         cout << BRIGHT_CYAN << "-----    Level Up Rewards   -----" << RESET_COLOR << endl << endl;
-        cout << "Level      Rewards" << endl;
 
-        (playerLv >= 5) ? cout << BRIGHT_YELLOW : cout;
-        cout << "Lv. 05" << "     " << "+1 ATK value" << endl;
-        (playerLv < 10) ? cout << RESET_COLOR : cout;
+        const int LEVEL_WIDTH = 12;
+        const int REWARDS_WIDTH = 20;
 
-        cout << "Lv. 10" << "     " << "+1 ATK value" << endl;
-        (playerLv < 15) ? cout << RESET_COLOR : cout;
+        cout << left;
 
-        cout << "Lv. 15" << "     " << "+2 ATK value" << endl;
-        (playerLv < 20) ? cout << RESET_COLOR : cout;
-
-        cout << "Lv. 20" << "     " << "+2 ATK value" << endl;
+        cout << BRIGHT_GREEN << setw(LEVEL_WIDTH) << "Level";
+        cout << BRIGHT_YELLOW << setw(REWARDS_WIDTH) << "Rewards" << endl;
         cout << RESET_COLOR;
 
+        (playerLv >= 5) ? cout << BRIGHT_YELLOW : cout;
+        cout << setw(LEVEL_WIDTH) << "Lv. 05";
+        cout << setw(REWARDS_WIDTH) << "+1 ATK value" << endl;
+
+        (playerLv < 10) ? cout << RESET_COLOR : cout;
+        cout << setw(LEVEL_WIDTH) << "Lv. 10";
+        cout << setw(REWARDS_WIDTH) << "+1 ATK value" << endl;
+
+        (playerLv < 15) ? cout << RESET_COLOR : cout;
+        cout << setw(LEVEL_WIDTH) << "Lv. 15";
+        cout << setw(REWARDS_WIDTH) << "+2 ATK value" << endl;
+
+        (playerLv < 20) ? cout << RESET_COLOR : cout;
+        cout << setw(LEVEL_WIDTH) << "Lv. 20";
+        cout << setw(REWARDS_WIDTH) << "+2 ATK value" << endl;
+
+        cout << RESET_COLOR;
+        cout << right; // default
         cout << endl;
+
         cout << "Total Bonus Added: " << BRIGHT_YELLOW << bonusATK << RESET_COLOR << " ATK" << endl;
-        cout << endl;
+        cout << endl << endl;
 
         cin.ignore();
         cout << BRIGHT_GREEN << "Press ENTER to continue..." << RESET_COLOR;
@@ -184,13 +207,7 @@ void playerMenu() {
         system("clear");
         playerMenu();
 
-        break;
-    case 3: system("clear"); menu(); break;
-    default: system("clear"); playerMenu();
-    }
-
 }
-
 
 void weaponStore() {
     int number = 0;
