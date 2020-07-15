@@ -32,7 +32,8 @@ int playerExp = 0;
 int playerSpentExp = 0;
 
 int bonusATK = 0; // level up rewards variable
-int weaponATK = 0, weaponMMP = 0, weaponMHP = 0; // weapon variable
+int weaponATK = 0, weaponPMP = 0, weaponMHP = 0; // weapon variable
+int number = 0; // user input
 
 // weapon variable
 int playerWeaponLevel = 0;
@@ -72,14 +73,14 @@ void showInfo() {
     }
     else if (playerWeaponType == "StarSword"){
         weaponATK = 1;
-        weaponMMP = 1;
+        weaponPMP = 1;
         if (playerWeaponLevel >= 15){
             weaponATK += 2;
-            weaponMMP += 1;
+            weaponPMP += 1;
         }
         else if (playerWeaponLevel >= 25){
             weaponATK += 3;
-            weaponMMP += 1;
+            weaponPMP += 1;
         }
     }
     else if (playerWeaponType == "GoldenSword"){
@@ -95,7 +96,6 @@ void showInfo() {
         weaponMHP = 60;
     }
 
-
     cout << left << BRIGHT_GREEN << setw(11) << playerName << RESET_COLOR;
     cout << " Lv. " << BRIGHT_CYAN << setw(6) << playerLv << RESET_COLOR;
     cout << " EXP " << BRIGHT_YELLOW << setw(6) << playerExp << RESET_COLOR;
@@ -104,15 +104,10 @@ void showInfo() {
 }
 
 void menu() {
-    int number = 0;
 
     showInfo();
+    showMenu("Main Menu");
 
-    cout << "-----       Main Menu      -----" << endl;
-    cout << "1) Player" << endl;
-    cout << "2) Dungeon" << endl;
-    cout << "3) Save Game" << endl;
-    
     cin >> number;
     switch (number) {
     case 1: system("clear"); playerMenu(); break;
@@ -127,8 +122,8 @@ void save(){
     cout << endl;
     cout << "The following data will be saved: " << endl;
     cout << BRIGHT_YELLOW << "Player Name\nPlayer EXP\nPlayer Level\nPlayer Weapon Type\nPlayer Weapon Level" << RESET_COLOR << endl;
-    cout << endl;
-    cout << endl;
+    cout << endl << endl;
+
     string data = "/" + playerName + "-" + to_string(playerExp) + "-" + to_string(playerSpentExp) + "-" + playerWeaponType + "-" + to_string(playerWeaponLevel) + "/";
     cout << "Please use the following key for next login: " << endl;
     cout << BRIGHT_CYAN << data << RESET_COLOR;
@@ -144,17 +139,13 @@ void save(){
 
 void playerMenu() {
 
-    int number = 0;
-
     showInfo();
-
     showMenu("Player Menu");
 
     cin >> number;
     switch (number) {
     case 1: system("clear"); weaponStore(); break;
     case 2: system("clear"); levelReward(); break;
-
     case 3: system("clear"); menu(); break;
     default: system("clear"); playerMenu();
     }
@@ -164,8 +155,7 @@ void playerMenu() {
 void levelReward() {
 
         showInfo();
-
-        cout << BRIGHT_CYAN << "-----    Level Up Rewards   -----" << RESET_COLOR << endl << endl;
+        showMenu("Level Up Rewards");
 
         const int LEVEL_WIDTH = 12;
         const int REWARDS_WIDTH = 20;
@@ -209,12 +199,13 @@ void levelReward() {
 }
 
 void weaponStore() {
-    int number = 0;
 
     showInfo();
+    showMenu("Dungeon Weapon Store");
 
-    cout << "----- Dungeon Weapon Store -----" << endl;
-    cout << "ATK: Player's Attack Value; MHP: Monster Max Health Deduction" << endl << endl;
+    cout << "ATK: Player's Attack Value;" << endl;
+    cout << "PMP: Player's Energy Point;" << endl;
+    cout << "MHP: Monster Max Health Deduction;" << endl;
 
     cout << left;
     
@@ -269,17 +260,17 @@ void weaponStore() {
     (playerWeaponType == "StarSword") ? cout << BRIGHT_YELLOW : cout;
     cout << setw(PRICE_WIDTH) << "850 EXP";
     cout << setw(WEAPON_WIDTH) << "StarSword";
-    cout << setw(PROPERTIES_WIDTH) << "(  1 ATK;  1 MMP )" << endl;
+    cout << setw(PROPERTIES_WIDTH) << "(  1 ATK;  1 PMP )" << endl;
 
     (playerWeaponLevel < 15) ? cout << RESET_COLOR : cout;
     cout << setw(PRICE_WIDTH) << "";
     cout << setw(WEAPON_WIDTH) << "Lv.15";
-    cout << setw(PROPERTIES_WIDTH) << "( +2 ATK; +1 MMP )" << endl;
+    cout << setw(PROPERTIES_WIDTH) << "( +2 ATK; +1 PMP )" << endl;
 
     (playerWeaponLevel < 25) ? cout << RESET_COLOR : cout;
     cout << setw(PRICE_WIDTH) << "";
     cout << setw(WEAPON_WIDTH) << "Lv.25";
-    cout << setw(PROPERTIES_WIDTH) << "( +3 ATK; +1 MMP )" << endl;
+    cout << setw(PROPERTIES_WIDTH) << "( +3 ATK; +1 PMP )" << endl;
 
     cout << RESET_COLOR << endl;
 
@@ -344,11 +335,11 @@ void weaponStore() {
 
 void purchaseWeapon(string w, int p) {
 
-    if(playerExp<p){
+    if (playerExp < p){
         cout << BRIGHT_RED << "You do not have enough experiences." << RESET_COLOR << endl << endl;
     }
 
-    else if(w=="PowerUp"){
+    else if (w == "PowerUp"){
         playerExp -= p;
         playerSpentExp += p;
         playerWeaponLevel += 1;
@@ -388,9 +379,8 @@ void purchaseWeapon(string w, int p) {
     weaponStore();
 }
 
+
 void dungeonMenu() {
-    int number = 0;
-    playerLv = (playerExp + playerSpentExp) / 50;
 
     showInfo();
     showMenu("Dungeon Menu");
@@ -452,9 +442,8 @@ void dungeon() {
     int playerATK = 100; // initial attack value
     playerATK += bonusATK; // level up rewards deduct monster health
     playerATK += weaponATK; // weapon increase player's attack
-    energyATK += weaponMMP; // weapon increase player's energy
+    energyATK += weaponPMP; // weapon increase player's energy
     monsterHealth -= weaponMHP; // weapon deduct monster health
-
 
     do {
 
@@ -518,7 +507,6 @@ void dungeon() {
 }
 
 void dungeonReward(int rewardEXP) {
-    int number;
 
     cout << endl << BRIGHT_CYAN << "Dungeon Completed" << RESET_COLOR << endl;
     cout << endl << "Rewards: " << BRIGHT_YELLOW << rewardEXP << RESET_COLOR << " EXP" << endl << endl;
