@@ -92,6 +92,7 @@ void showInfo(string m) {
         weaponMHP = 275;
     }
 
+    // player weapon level bonus
     if (playerWeaponLevel >= 25){
         weaponPMP += 3;
         weaponATK += 6;
@@ -431,8 +432,15 @@ void dungeon() {
             countATK = 0;
             system("clear");
 
+            // monster HP
+            cout << "Monster HP: ";
+            for(int i = (monsterHealth/double(monsterMaxHealth) * 25); i > 0; i--){
+                cout << BRIGHT_RED << "*" << RESET_COLOR;
+            }
+            cout << endl << endl;
+
             // energy
-            cout << "Energy: ";
+            cout << "Player PMP: ";
             if (energyATK>20){
                 for(int i = 20; i > 0; i--){
                     cout << "*";
@@ -446,6 +454,7 @@ void dungeon() {
                     cout << "*";
                 }
             }
+
 
             cout << endl;
 
