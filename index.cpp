@@ -53,7 +53,7 @@ void showInfo(string m) {
         cout << message << endl << endl;
 
     // update variable
-    playerLv = (playerSpentExp * 0.2) / 50; // player level
+    playerLv = (playerSpentExp * 0.2) / 20; // player level
 
     // player level rewards bonus
     if (playerLv >= 5 && playerLv < 10)
@@ -489,8 +489,8 @@ void dungeon() {
 void dungeonReward(int x) {
 
     system("clear");
-    int rewardEXP = x / 500 * 0.95;
-    int rewardPlayerExp = x / 500 * 0.05;
+    int rewardEXP = x / 500 * 0.85;
+    int rewardPlayerExp = x / 500 * 0.15;
 
     cout << endl << BRIGHT_CYAN << "Dungeon Completed" << RESET_COLOR;
     cout << endl << endl;
