@@ -1,6 +1,6 @@
 ## How To Run The Dungeon Game
-[![Run on Repl.it](https://repl.it/badge/github/wukimwa/game)](https://repl.it/github/wukimwa/game)
-1. Click the link here 💻 https://repl.it/github/wukimwa/game 💻
+[![Run on Repl.it](https://repl.it/badge/github/wukimwa/Dungeon)](https://repl.it/github/wukimwa/Dungeon)
+1. Click the link here 💻 https://repl.it/github/wukimwa/Dungeon 💻
 2. Click the RUN button on Repl.it
 
 
